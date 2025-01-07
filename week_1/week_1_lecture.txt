@@ -1,0 +1,888 @@
+
+
+
+
+
+
+
+Plan
+
+
+
+Usability
+
+10 Heuristics of Usability
+
+Usability Testing
+
+Test Plan (The Brief)
+
+In-class lab (individual & group part) Heuristics
+
+Assignment - Test Plan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Usability
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+" Web usability - The extent to which specified users can find,
+understand and use information and services online."
+
+                Government of Canada, Standard on Web Usability
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Usability - how people will use your website.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Usability test - to determine if the website is usable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Heuristics - a checklist of usability principles which we should consider
+when we build our website, if we want it to be usable.
+
+
+The most well-known - 10 Usability Heuristics of Jakob Nielsen
+
+https://www.nngroup.com/articles/ten-usability-heuristics/
+
+
+
+
+
+
+
+
+
+
+
+
+
+Heuristic Evaluation - inspecting the website according to usability heuristics.
+
+
+
+
+
+
+
+
+
+
+
+Example of Heuristic Evaluation of a website based on Jakob Nielsen's 10 usability heuristics.
+
+
+
+
+
+
+
+
+
+
+
+
+https://reservations.ontarioparks.ca/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Visibility of System Status
+
+- When user selects campground, they can see loading indicators.
+
+
+
+
+
+
+
+
+
+2. Match Between System and the Real World
+
+- Familiar language ('campground', 'backcountry', etc.) is used.
+
+
+
+
+
+
+
+
+
+
+
+
+3. User Control and Freedom
+
+- Users can easily navigate back.
+
+
+
+
+
+
+
+
+
+
+
+
+4. Consistency and Standards
+
+- The design follows common web conventions: Sign in, Cart, Reservations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Error Prevention
+
+- The site could enhance error prevention by making default value for Equipment field.
+
+
+
+
+
+
+
+
+
+
+
+
+
+6. Recognition Rather Than Recall
+
+- When I select Mew Lake campground I see it belongs to Algonquin park.
+- Legend below the map.
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. Flexibility and Efficiency of Use
+
+- Saved searches for returning users can improve efficiency.
+
+
+
+
+
+
+
+
+
+
+
+
+8. Aesthetic and Minimalist Design
+
+- The design is mostly clean and minimalist.
+
+
+
+
+
+
+
+
+
+
+
+
+9. Help Users Recognize, Diagnose, and Recover from Errors
+
+- Error messages are present helping users how to fix their issues.
+
+
+
+
+
+
+
+
+
+
+
+
+
+10. Help and Documentation
+
+- FAQ page.
+- Descriptions of the campgrounds.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Usability Testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+For this we will need:
+
+
+- Who is going to use our website?
+
+- Test how these people actually using our website.
+
+- Interpret the test data.
+
+- Make recommendations how to improve usability.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- What to test
+- Scope of testing
+- Questions
+- Participants
+- Methods
+- Metrics
+- Scenarios
+- Schedule & Location
+- Equipment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What to expect next in the course:
+
+1. Learn how to create your Test Plan.
+2. Perform user testing according to your Test Plan.
+3. Collect test data and create a Test Report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What to test?
+
+- Your website or app which you have built.
+
+Why yours?
+
+- To test if your website it usable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Scope
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- What you test and why.
+- Be as specific as possible about what exactly you are testing.
+- What you do not test and why.
+
+
+
+
+
+
+
+
+
+
+
+
+Questions
+
+
+
+
+
+
+
+
+
+
+
+- Specify the questions which you want to get answers for.
+- Explain why these questions matter for you as website owner.
+
+
+
+
+
+
+
+For example:
+
+- Can my users find Search button?
+It is important because the main feature of my website is search movie database.
+
+- Does dropdown menu work better than breadcrumbs?
+It is important because I have a lot of options and need to decide if I would use
+dropdowns or breadcrumbs.
+
+- Do users learn the interface in under 3 seconds?
+I expect that users get familiar with the website quickly.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Participants
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What are the demographics of people you are testing?
+
+- Age, sex, level of education, income.
+
+How many people you are testing?
+
+I recommend to test 5 people:
+
+- Can be your classmates.
+- Can be your friends outside the classroom.
+
+Why you have chosen this group of people?
+
+- This group should be the best match for the scope of your testing.
+
+No need in personal details (name, address, contact details).
+
+
+
+
+
+
+
+
+
+
+
+Methods
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What methods you will use in your test?
+
+- Heuristic Evaluation (specify which heuristics).
+
+- Discovery (finding problems by observing users perform tasks).
+
+- Benchmark (test how well solutions perform).
+
+- Is your test moderated or not?
+
+-- Moderated - when there is a moderator who tells participants what to do.
+-- Not moderated - when participants have a task and should complete it individually.
+
+
+
+
+
+
+
+
+
+
+
+
+Metrics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- What you will measure.
+
+- How will you measure it?
+
+- What data you will be collecting.
+
+- Why this data is important?
+
+- Are you sure that a metric will help you to answer your question?
+
+
+
+
+
+
+
+
+Examples of metrics:
+
+
+- Successful task completion.
+
+How many participants have completed the task?
+
+- Critical Errors.
+
+How many critical errors did participants make?
+What are critical errors?
+Why they matter for your test?
+
+- Non-critical Errors.
+
+- Error-free rate.
+
+How many participants completed the task without any errors?
+
+- Time on Task.
+
+How much time did participant spend on task?
+Is it long?
+Why this matters?
+
+- Happiness from using the feature.
+
+"Is this reservation process was easy to complete"
+Strongly Agree - Agree - Neutral - Disagree - Strongly Disagree
+
+- Comments or Recommendations from the participants.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Scenarios
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Each scenario provides a context in order to allow participant to better
+understand the activity.
+
+- What are the most important things that every user must be able
+to accomplish on your application?
+
+- Create tasks that address your test goals.
+
+- Base your scenarios on what do you want your users to do?
+
+- What do they usually look for on your website?
+
+
+
+
+
+
+
+
+
+
+
+Schedule and Location
+
+
+
+
+
+
+
+
+
+
+
+When you plan to perform the tests?
+Where this will happen?
+It can be online.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Equipment
+
+
+
+
+
+
+
+
+
+
+
+Which OS, computer or device your participants will be using for testing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Once you have all this organized, you will create a Test Plan (sometimes called Brief)
+
+
+
+
+
+
+
+
+
+
+
+Brief
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Brief should consist of the following:
+
+- [09] Executive Summary.
+- [01] Scope.
+- [02] Questions.
+- [03] Participants.
+- [04] Methods.
+- [05] Metrics.
+- [06] Schedule & Location.
+- [07] Equipment.
+- [08] Scenarios.
+
+
+[N] - number in the brackets is the suggestion
+in which order to creat this parts.
+
+
+
+
+
+
+
+
+
+
+Executive Summary
+
+The whole plan summarized in 1-2 paragraphs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+In-class Lab
+
+
+1. Perform a Heuristic Evaluation of the website
+https://torontocupcake.com/ based on Jakob Nielsen's 10 Usability Heuristics.
+
+2. Individually evaluate the website.
+For each of the 10 heuristics, identify one or more examples where
+the website either:
+
+- Follows the heuristic well, or
+- Needs improvement.
+
+Document your findings in the template.
+
+3. Once you’ve completed your individual evaluation,
+form a group of 3-5 students. Compare your individual findings,
+discuss them, and agree on the final evaluation for each heuristic.
+
+Document the group's findings in the template.
+
+4. Show both your individual and group documents to your instructor
+in-class and submit via Blackboard.
+
+
+
+
+
+
+
+
+Assignment
+
+
+Create Usability Test Plan (The Brief) for your pet project.
+
+The Brief should consist of:
+
+Executive Summary.
+Scope.
+Questions.
+Participants.
+Methods.
+Metrics.
+Scenarios.
+Schedule & Location.
+Equipment.
