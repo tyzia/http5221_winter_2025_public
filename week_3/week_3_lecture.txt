@@ -1,0 +1,2142 @@
+
+
+
+
+
+
+
+
+Plan
+
+
+git
+
+feedback (from git evaluation)
+
+path
+
+root
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git - is a "camera" to take "snapshots" of your code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- Imagine you have a scenery in front of you.
+There is a palm tree, a house, the sea and the Sun
+
+- You "camera" allows you to take "picture":
+
+ -- of the entire scenery OR
+ -- parts of this picture
+
+- Let's do parts of the picture:
+
+ -- Picture of the Sun
+ -- Picture of the tree
+ -- Picture of the house
+
+- The final result will still be the entire scene you have in front of you,
+- but it is cut into invisible pieces.
+
+
+
+
+
+
+
+
+
+Why would you want to cut the scenery in pieces?
+
+- You don't like how the Sun looks like and you would like to change it later.
+- You will be drawing another sunset picture and will need the same palm tree.
+
+Obviously, you have full control over your pictures. You can:
+
+- Delete them
+- Reorder them
+- Move them around the canvas (swap house with palm tree)
+- Copy them (add more houses to the canvas)
+
+
+
+
+
+
+
+
+
+Where do I store these "snapshots"? In a container or a box.
+
+
+
+
+
+
+
+
+
+
+Let's discuss one more scenario:
+
+Assume you want to try to add a ship to your image, but you are not sure
+if it will look good. You want to try.
+
+In order not to mess up your main image, you will create a copy of your box,
+this copy will have all snapshots from original box.
+
+You had box A. You created a copy of it which is box B.
+
+Now you can start adding
+new snapshots into box B, not affecting box A.
+
+If you like how ship looks on the canvas, you can combine your new shapshots
+from box B into box A. This is called "merging".
+
+
+
+
+
+
+
+
+
+Both box A and box B will be tracked by my "camera" tool.
+
+
+
+
+
+
+
+
+
+Now, I have a friend who says that he wants to help me
+add more details to this picture.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+I will share my box A - which is my main box - with him.
+To do so, I first need to copy my box to external service,
+for example: github.com or bitbucket.com
+
+
+
+
+
+
+
+
+
+
+
+Once I shared my box we have:
+
+- one box A on my machine
+- one box A on github.com
+- one box A on my friend's machine
+
+
+
+
+
+
+
+
+
+
+We continue to work, I have added a boat to the scenery.
+I made a snapshot of it and put it into my box.
+This boat scenery is only in my box for now, it doesn't exist:
+
+- in the box on github.com
+- in the box of my friend
+
+The same for my friend - if he added a flying bird in the sky and
+made a snapshot of it, he put it into his box.
+Neither my box, not github's box have it yet.
+
+
+
+
+
+
+
+
+
+
+
+But it is not a problem. I can copy my local snapshots from my box
+to the box in github, and later my friend can copy my snapshots from
+the box in the github to his local machine.
+
+The same for my friend - he can copy his work to github and I will get
+copy of his snapshots from github.
+
+This way we collaborate on the same project and add new features into it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let's adjust some definitions:
+
+
+
+
+
+
+For example, terms could be:
+
+scenery = your code of a webpage
+palm tree = login button
+house = footer of website
+sun = popup
+
+
+camera = git
+picture = commit
+box = branch
+
+
+
+
+
+
+
+
+
+
+
+
+Commits - main building block in git.
+
+Everything depends on these commits in your work.
+Pay attention what you add to your commit (to your shapshot).
+
+
+
+
+
+
+
+
+
+
+Internally git stores all "pictures" (commits) in a "box" (branch)
+and all boxes in a large container - repo or repository.
+
+The repo can be:
+
+- on your local machine
+- on remote server
+
+The main idea of git is that the same "box" with "snapshots" can be shared between developers.
+Everyone in the team who has access to this common "box" (repo) can add new "snapshots" into it.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let's discuss how to use git
+
+
+- Install it: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+
+Ok, I have installed it.
+
+
+
+
+
+
+
+
+
+
+Initializing git
+
+
+
+
+
+git init
+
+
+
+
+
+
+
+
+
+Next step you need to create a large container where git will store
+its "boxes" (branches) and "snapshots" (commits).
+
+You always start with this command when you start your work in the very beginning.
+You don't need to repeat it later, it needs to be run only once.
+
+> cd my_project_folder
+> git init
+
+This command will initiate empty git repo for you and will create main branch.
+
+
+
+
+
+
+
+
+
+
+
+
+Cloning git repository
+
+
+
+git clone
+
+
+
+
+
+
+
+
+
+
+
+Another way to start your work with git
+
+
+Let's imagine, that the work on the project has already started,
+and this will be the most common scenario for you. The repo already exists in github.com
+and you need to make its copy on your machine.
+
+Copy the link from github.com/bitbucket.com
+On your local you make a copy of this repo:
+
+> cd my_project_folder
+> git clone <the-link-from-github/bitbucket>
+
+This command will initialize git repo for you and copy main branch.
+
+
+
+
+
+
+
+
+
+
+
+
+To check the status of your "snapshots" and the "box":
+
+> git status
+
+The main command which will tell you everything about what is currently
+happening with your code and git.
+
+Please, use it as often as possible.
+
+
+
+
+
+
+
+
+
+
+
+Demo (in the terminal)
+
+> cd my_folder
+> mkdir new_folder
+> cd new_folder
+> git status
+> git init
+> git status
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let's talk about 4 different states of your files in git:
+(note: write these on the classroom board)
+
+1) Untracked files.
+
+New files which you have added.
+
+2) Changes not staged for commit.
+
+You made change to existing file. It will appear in this section.
+
+3) Changes to be committed.
+
+You made a change in existing file and prepared it for
+the "picture" (commit). But the "picture" hasn't been taken yet.
+
+
+You can easily move files between all these stages.
+
+
+
+
+
+
+
+
+
+
+Before we proceed, let's make one important step:
+
+We do not want to add our changes/commits to main branch.
+We need to create our new branch first.
+This is common practice - whatever you do, you do it in your own branch.
+Once you want to add these changes to main branch, you create a Pull Request
+(talk about it later)
+
+
+> git branch test
+
+This will create branch test which is exact copy of main branch.
+
+> git checkout test
+
+This will switch to test branch
+
+
+
+
+
+
+
+
+To see the list of branches in our repo:
+
+> git branch
+
+
+
+
+
+
+
+
+
+
+Demo (in terminal)
+
+Typical workflow will be:
+
+
+> cd my_project
+> vim index.html
+> i hello world ESC + :x
+
+Here I created index.html. It is a new file in my repo,
+this file will appear in "Untracked files"
+
+> git status
+
+
+
+
+
+
+
+
+
+
+Let's create a simple commit of this change:
+
+> git add index.html
+> git status
+
+I have added this file to the list of changes which I
+would like to create my commit from.
+
+This is not a commit yet. I need:
+
+> git commit -m "Add index.html file"
+
+Once you run this command, you will see that commit was created.
+Each commit is tracked by unique hash string.
+Think of it as unique id. If you will need this commit in the future,
+you will use this commit hash to access this commit.
+
+
+
+
+
+
+One thing about -m flag.
+You can run commit command like:
+
+> git commit
+
+But this will open editor in your terminal, probably VIM or NANO.
+
+My suggestion: try to learn basic commands in at least one of these editors.
+
+A small cheatsheet for you about vim
+
+
+
+
+
+
+
+
+
+
+Vim has these main modes:
+
+- Normal
+- Insert
+- Command
+
+
+By default, it opens file in Normal mode. You can view the file,
+but you CAN NOT change anything.
+
+This part could be very confusing when you start using vim.
+
+To enter Insert mode you type:
+
+i
+
+Now you make changes you need.
+
+To save the changes you press:
+
+ESC
+
+To return to Normal mode.
+
+Type:
+
+:
+
+To enter Command mode.
+
+And now type the command which you want. I want to save and exit:
+
+x
+
+This will save and close your file.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> git status
+
+Now you don't see "no commits yet", because you already created your commit.
+
+But where is your commit? Now it is in commit history. If you want to see it:
+
+> git log
+
+This will show all commits in your branch with the name and time when
+the commit was created.
+
+
+
+
+
+
+
+
+
+
+
+
+Let's create new commit.
+
+> vim index.html
+> i ! ESC + :x
+
+
+
+What will show git status?
+
+
+
+
+
+
+
+
+
+
+
+
+
+> git status
+
+It shows that my change is in "Changes not staged for commit".
+This makes sense, because I did change my existing file, but didn't
+add this change for commit yet.
+
+Let's add this change for commit. Again, this is not actual commit,
+we are just preparing our code for commit.
+
+> git add index.html
+
+What will show git status?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+> git status
+
+This will show that my file is in "Changes to be committed"
+
+
+
+
+
+
+
+
+
+
+Let's not commit at this moment. I will continue to make changes:
+
+> vim index.html
+> i !! ESC + :x
+
+
+What will show my git status now?
+
+
+
+
+
+
+
+
+
+
+> git status
+
+It will show that I still have my changes in index.html ready for commit.
+These will be in "Changes to be committed".
+
+It will also show that I now have more changes in the same file, but
+those are not ready for commit.
+
+If I will create commit at this moment, only the top changes will go into commit.
+
+But I will not create a commit, I want new changes to be included as well.
+
+> git add index.html
+
+Now, when all my changes are ready for commit, I can commit them:
+
+> git commit -m "Add exclamation mark"
+
+
+
+
+
+
+
+
+
+
+
+
+Now, I am happy with my changes and I will push my code to github.com
+
+> git push origin test
+
+Here I specify where to push - origin. It is the name of github.com in my local repo.
+I also specify which branch I want to push.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now feedback from Git Evaluation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Pushed to main branch and could not create PR.
+
+Pull Request - when you have your change in your custom branch
+and you try to merge your branch into main branch.
+
+If you didn't create a branch, but committed directly to main branch,
+and then pushed your changes to github.com, then you could not create a PR.
+
+You missed step of creating your branch (#6 in Order of Assignment Completion).
+
+
+How to fix?
+
+You are on your main branch.
+
+> git branch your-branch
+
+This command will copy all the changes from main branch to your-branch.
+
+> git log --oneline
+
+This command wil show all commits which you have in main branch.
+You would need to revert all of them. For example, you see in git log:
+
+abc123 initial commit
+aabb11 add a form
+bbaa22 add label
+
+These are the commits you want to revert in main branch:
+
+> git revert abc123 aabb11 bbaa22
+
+You specify here your commits hashes which you want to revert.
+This command will add more commits to your main branch. It is ok.
+The main idea here that these new commits will cancel out your previous changes.
+
+> git push origin main
+
+Now push your changes again to github.com to main branch. Now your main branch
+in github.com doesn't have any changes.
+
+> git checkout your-branch
+> git push origin your-branch
+
+This command will push your branch to github.com.
+
+After these commands you will have:
+
+- main branch with no changes
+- your-branch with your changes as commits
+
+Now you can create a PR in github.com.
+
+
+
+
+
+
+
+
+
+
+
+1.1 Special case when you added your changes but didn't push github.
+
+This case is easier to fix. You are on your main branch.
+
+> git branch your-branch
+> git reset --hard origin/main
+> git checkout your-branch
+> git push origin your-branch
+
+Here you created your own branch and copied changes there,
+restored the state of main branch locally and pushed your branch
+to github.com.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2. Attributes
+
+<input type="Email">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Generally all attributes and values are lowercase and only hyphens should be used.
+No spaces.
+
+
+
+
+
+Bad:
+
+<input Type="email">
+<input name="My-Name">
+<input name="my_name">
+<input name = "my-name">
+
+
+Good:
+
+<input type="email">
+<input name="my-name">
+
+
+
+
+
+
+
+
+3. Form action
+
+Some submissions had:
+
+<form action="/submit">
+
+The problem with this code is that you don't have /submit endpoint.
+Submitting the form will result in error. We don't want that.
+
+There is a convention to use:
+
+<form action="#">
+
+This is the way of saying "we don't have the action for this form yet".
+
+
+
+
+
+
+
+
+
+
+4. Unnecessary changes
+
+Some submissions had styling css code.
+This was not required by this lab. I am happy that you have added styling,
+though for sake of your time, please, don't add more than required.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5. Commits
+
+It was my bad - I told that you can see my commit history, but you haven't
+access to it, initial repo for this assignment is private and you can't
+see its history.
+We will learn best practices about commits in future in this course.
+
+
+
+
+
+
+
+
+
+
+
+
+6. Didn't link <label> with <input>
+
+<label for="first-name">Name</label>
+<input name="first-name">
+
+What is the problem with this code?
+
+
+
+
+
+
+
+
+
+
+
+
+
+7. Didn't add description to your PR.
+
+Please, get a habit of always describing what you are doing and why.
+Why - is the most important!
+
+This is related to your:
+
+- commits
+- your comments in the code (if you have them)
+- PR names
+- PR descriptions
+
+Don't add obvious things.
+
+Add a link to requirements/task for the work you did.
+
+
+Bad:
+
+<nothing>
+
+"Created a form. A label with the text Email, an input, a submit button..."
+
+Good:
+
+"This PR creates a form with email field as per requirements in README.md file"
+
+
+
+
+
+
+
+
+
+
+
+
+Label is linked with input by id:
+
+<label for="first-name">Name</label>
+<input id="first-name" name="first-name">
+
+
+
+
+
+
+
+
+
+More recommendations to pay attention to:
+
+- Wait until tests pass on your PR before merging it.
+- If tests fail, it is good if you can make a fix, commit it and push.
+- The full mark for any assignment involving Github Classroom will be this way:
+
+-- Full mark if PR was created and tests passed.
+-- Minus 1 mark, if tests didn't pass initially and you had to commit more fixes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What is a Path?
+
+
+
+
+
+
+
+
+
+Path === location of file
+
+
+
+
+
+
+Usually in web development files are called 'resources'.
+
+The most common resources are:
+
+- images (<img>)
+- scripts (*.js)
+- stylesheets (*.css)
+
+
+
+
+
+
+
+
+
+
+
+Before talking about file systems and paths,
+let's talk about:
+
+root
+
+
+
+
+
+
+
+
+
+
+
+
+What is root?
+
+
+
+
+
+
+
+
+
+
+
+
+
+The root directory on a server refers to the
+topmost directory of the file system in Linux-based systems.
+
+In a file system, the root directory itself doesn't have a "name"
+in the traditional sense. It is simply represented by a single slash /.
+The term "root" is more of a concept or label that helps people understand
+its position in the file system hierarchy, rather than referring to a
+directory with a specific name.
+
+
+
+
+
+
+
+
+
+
+
+
+For example,
+
+we have file D.html on a server:
+  inside folderC
+  inside folderB
+  inside folderA
+  folderA is in the root of the server
+
+the path to this file will be:
+
+/folderA/folderB/folderC/D.html
+
+
+
+
+
+
+
+
+
+
+Key Point:
+
+The 'root' (/) here refers to the system-level root.
+It’s the starting point of the entire file system on the server.
+You can think of this as the "highest" directory on the entire system.
+
+
+
+
+
+
+
+
+Practice 1
+"How to refer to the root folder on the server?"
+
+
+
+Your answer:
+---
+
+path = ""
+
+---
+
+
+
+
+
+
+
+
+
+
+Practice 2
+"How to refer to the folder 'courses' inside 'humber' folder
+which is in the root of the server?"
+
+
+
+Your answer:
+---
+
+path = ""
+
+---
+
+
+
+
+
+
+
+
+
+
+
+There are other roots out there.
+
+
+
+
+
+
+- project root
+- web or document root
+
+
+
+
+
+
+
+
+
+Usually main folder of the project is called 'root'.
+
+
+For example:
+
+you have my_project folder which has html, js, css files.
+The location of your project on the server is:
+
+/Users/andrei/Documents/Downloads/projects/my_project/*
+
+* - means that there are some files inside
+
+The 'root' of your project will be 'my_project' folder.
+The 'root' of your server will still be the leftmost /
+
+
+
+
+
+
+
+
+
+
+
+One more type of root - the folder accessible from the web.
+
+
+
+
+
+
+
+
+When you access a website, there is a different concept of
+"root" called:
+
+web root
+document root
+
+This is the folder where your web server (like Apache or Nginx)
+serves the website files from.
+
+
+The web root is usually a subdirectory within the file system
+that is specifically configured to be publicly accessible
+via a web browser.
+
+
+
+
+For example,
+
+you host a website with domain: my-super-domain.com
+
+On a server, where you host your website files,
+those are located at:
+
+/var/www/my-super-domain.com/public_html/*
+
+This is file system path.
+
+
+
+
+
+
+
+
+This server can host many websites,
+so there files will be located as:
+
+/var/www/website1/public_html/*
+/var/www/website2/public_html/*
+...
+/var/www/website9/public_html/*
+
+
+
+
+
+
+
+
+Your webserver (Apache or Nginx) is configured to
+serve files from a specific folder on your server.
+Usually it is 'public_html'.
+
+So your 'public_html' folder is the web or document root
+for a specific domain.
+
+
+
+
+
+Once you type 'my-super-domain.com/index.html' in the browser,
+your browser will find the server and will request
+a file (usually index.html) from this server.
+The webserver will look for index.html inside of web root
+for this domain and will send this file back to the browser.
+In our case this file will be located at:
+
+/var/www/my-super-domain.com/public_html/index.html
+
+it will not go to this file:
+
+/var/www/not-my-domain.com/public_html/index.html
+
+because this 'public_html' is a web root of other
+domain (not-my-domain.com).
+
+
+
+
+
+
+
+
+
+
+Once again:
+
+web root is mapped to 'public_html' for a specific domain via Apache.
+
+web url:
+https://my-super-domain.com/index.html
+
+real file system path:
+/var/www/my-super-domain.com/public_html/index.html
+
+
+
+
+
+
+
+
+
+
+In a file path, the slash (/) serves two roles depending on the context:
+
+- As the Root Directory Indicator (/):
+When the slash is by itself at the beginning of a path
+
+- As a Path Separator Between Directories:
+In all other cases, the slash acts as a separator between directories
+
+
+Example:
+/var/www/my-super-domain.com/public_html/index.html
+
+
+
+
+
+
+
+
+Some more syntax here:
+
+
+
+
+.
+
+..
+
+
+
+
+
+
+
+
+
+
+
+
+In file systems, . (dot) and .. (double dot) are special directory
+references that are used to navigate the file structure.
+
+. (single dot) refers to the current directory.
+.. (double dot) refers to the parent directory (one level up).
+
+
+
+
+
+
+
+
+
+
+
+.
+
+It is often used to specify the current directory explicitly,
+though in many cases it’s optional.
+The system already assumes you are working within the current directory.
+
+This means that either is acceptable as path:
+
+path = "./index.html"
+("look for file index.html in current directory")
+
+or
+
+path = "index.html"
+("look for file index.html in current directory")
+
+
+
+
+
+
+
+
+
+
+..
+The .. represents the parent directory.
+The directory one level up in the hierarchy.
+
+
+
+
+
+
+
+For example
+
+We are in /home/user/docs/
+Our current directory is 'docs/'.
+
+path "../index.txt"
+("go one directory up compared to where you
+are now and refer to index.txt inside that directory")
+
+is the same as:
+
+path: "/home/user/index.txt"
+
+
+
+Explanation:
+
+../index.txt
+
+The first .. means move up one level to the parent directory:
+
+/home/user/docs/ → /home/user/
+
+get file index.txt inside of that folder
+
+
+
+
+path "../../login.txt"
+
+is the same as:
+
+path: "/home/login.txt"
+
+
+Explanation:
+
+../../login.txt
+
+The first .. means move up one level to the parent directory:
+
+/home/user/docs/ → /home/user/
+
+The second .. means move up another level:
+
+/home/user/ → /home/
+
+get file login.txt inside of that folder
+
+
+
+
+
+
+
+
+Practice 3
+We are in /home/user/docs/
+"What will be the path?"
+./../assets/styles.css
+
+Your answer
+---
+
+path = ""
+
+---
+
+
+
+
+
+
+
+
+
+Practice 4
+We are in /home/user/docs/
+"What path will be this?"
+../../../hello.txt
+
+Your answer
+---
+
+path = ""
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practice 5
+We are in /home/user/docs/
+"What path will be this?"
+../../../../hello.txt
+
+Your answer
+---
+
+path = ""
+
+---
+
+
+
+
+
+
+
+
+
+
+We can access the resource from two different places:
+
+- from web
+- from local file system
+
+
+
+
+
+
+
+
+
+
+
+What will happen if a resource is not found?
+
+404 error
+
+
+
+
+
+
+
+
+
+
+
+
+
+Example of broken path to demo why it is important
+
+
+So I have a folder and files inside:
+
+broken_path_example/
+  index.html
+  style.css
+
+
+Inspect in the network tab how styles are uploaded/requested.
+
+
+If I change the path to stylesheet file,
+the styles will look broken.
+
+
+demo: broken_path_example/index.html
+
+
+
+
+
+
+
+To sum up:
+
+Paths are essential for linking files and resources together.
+
+In JavaScript, paths are used to link
+external resources like scripts, stylesheets,
+or images.
+
+Correctly using paths ensures that files
+are properly located, loaded, and used in your project.
+
+Broken paths = broken app.
+
+
+
+
+
+
+
+
+Relative and Absolute paths
+
+
+
+
+
+
+
+
+
+
+
+Relative path
+
+
+
+
+
+
+
+
+A relative path specifies the location
+of a file relative to the current file
+or directory.
+
+Example:
+
+./style.css
+./js/app.js
+../assets/images/img.png
+index.html
+
+
+
+
+
+
+Relative path does not start from the root,
+but from the point of reference where the request is made.
+
+
+
+
+
+
+
+
+You can use relative paths in your html.
+
+
+
+
+
+
+
+Example:
+
+<script src="./app.js"></script>
+
+app.js is the file in the same directory
+as current file.
+
+
+
+
+
+Example:
+
+<img src="../logo.png" alt="Logo">
+
+logo.png is the file in parent directory
+compared to current file.
+
+
+
+
+
+Implicit vs Explicit path
+
+
+
+
+
+
+Explicit:
+<img src="./logo.png">
+
+we use ./ to explicitly say: "get logo.png from current directory".
+
+Implicit:
+<img src="logo.png">
+
+we don't use ./ here, but we still say: "get logo.png from current directory"
+
+
+
+
+
+
+
+
+
+Technically these are the same:
+
+<img src="./logo.png">
+<img src="logo.png">
+
+
+
+
+
+
+
+Practice 6
+Where webserver will be looking for this file?
+
+<img src="/logo.png">
+
+
+
+Your answer
+---
+
+
+
+---
+
+
+
+
+
+
+
+
+
+Remember, that / means 'root' folder.
+In case of web, when we refer a resource
+as <img src="/path/to/asset">
+leftmost / means 'web root' or 'document root',
+which is usually a 'public_html' folder
+somewhere on the server and not a file-system root.
+
+
+
+
+
+
+
+Why use relative path?
+
+
+You can move your files into other location
+on the server, and as long as you maintain
+the same file structure, the app will still work.
+
+Especially useful if you want to have app in different
+environments.
+
+
+For example:
+
+We have our project here:
+
+/users/projects/develop/
+|--assets/
+|--|--images/
+|--|--|--logo.png
+|--index.html
+
+inside of index.html we will use relative path:
+
+<img src="assets/images/logo.png">
+
+If we copy our project files into other folder:
+
+/users/project/production/
+|--assets/
+|--|--images/
+|--|--|--logo.png
+|--index.html
+
+<img src="assets/images/logo.png">
+
+This code will still work, because relative hierarchy
+between index.html and logo.png didn't change.
+
+logo.png is still inside of assets/images relative
+to where index.html is located.
+
+
+
+
+
+
+
+What are cons of relative path?
+
+- Can become confusing with complex file structure
+resulting in too many ../ levels.
+
+- If file structure changes, the code will be broken
+unless you update all paths.
+
+
+For example,
+
+We had this structure:
+
+/users/project/production/
+|--assets/
+|--|--images/
+|--|--|--logo.png
+|--index.html
+
+<img src="assets/images/logo.png">
+
+If we move our index.html into other folder
+and don't update the path of <img>:
+
+/users/project/production/
+|--assets/
+|--|--images/
+|--|--|--logo.png
+|--templates/
+|--|--index.html
+
+<img src="assets/images/logo.png">
+
+This path will not work. Because it will result in:
+
+/users/project/production/templates/assets/images/logo.png
+
+this file doesn't exist at that location.
+
+
+
+
+
+
+
+
+
+Absolute path
+
+
+
+
+
+
+
+
+An absolute path specifies the full address or
+location of a file from the root directory.
+
+
+
+
+
+Example of absolute paths:
+
+On server file system:
+/users/username/projects/my-website.com/js/app.js
+
+For web URL:
+https://my-website.com/js/app.js
+
+
+
+In both cases, the path describes the exact location.
+There is no need to 'know' current location of file.
+
+
+
+
+
+Code examples:
+
+<script src="https://www.example.com/js/app.js"></script>
+
+Absolute path where the script app.js will always
+load from the same URL (https://www.example.com)
+
+<script src="/js/app.js"></script>
+
+Root-relative path. A kind of absolute path. The script will load from
+the domain of the current file from web root folder.
+
+<script src="//www.example.com/js/app.js"></script>
+
+Protocol-Relative path. A kind of absolute path.
+The protocol (http or https) is omitted, and the
+browser uses the same protocol as the current page.
+
+
+
+
+
+
+
+Pros of Absolute Paths:
+
+- They always point to the same file,
+regardless of the location of the request.
+
+- Useful when linking to resources hosted on a CDN
+(Content Delivery Network).
+
+
+
+
+
+
+
+
+Con of Absolute Paths:
+
+- Project becomes less portable because paths rely on
+a specific location
+
+
+
+
+
+
+
+
+
+
+
+
+Practice 7
+
+You have this file structure:
+
+/users/project/production/
+|--assets/
+|--|--images/
+|--|--|--logo.png
+|--|--styles/
+|--|--|--style.css
+|--scripts/
+|--|--app.js
+|--templates/
+|--|--index.html
+|--home.html
+
+In the index.html you need to add logo.png and app.js.
+In the home.html you need to add style.css (<link>).
+In home.html you need to create anchor to index.html.
+
+Your answer:
+---
+
+<!-- index.html -->
+
+<img src=""> <!-- logo.png -->
+<script src=""></script> <!-- app.js -->
+
+<!-- home.html -->
+
+<link rel="stylesheet" src=""> <!-- style.css -->
+<a href="">Go To Index</a> <!-- index.html -->
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Practice 8
+
+/users/project/production/
+|-- assets/
+|   |-- images/
+|   |   |-- banner.jpg
+|   |-- styles/
+|   |   |-- theme.css
+|-- scripts/
+|   |-- main.js
+|-- templates/
+|   |-- about.html
+|   home.html
+
+
+Requirements:
+In home.html, you need to add the banner.jpg image and main.js script.
+In about.html, you need to add the theme.css stylesheet.
+In about.html, you need to create a link to home.html.
+
+Your answer:
+---
+
+<!-- home.html -->
+<img src=""> <!-- banner.jpg -->
+<script src=""></script> <!-- main.js -->
+
+<!-- about.html -->
+<link rel="stylesheet" href=""> <!-- theme.css -->
+
+<!-- about.html -->
+<a href="">Go to Home</a> <!-- home.html -->
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thank you
+
+
+
+
+
+
+
+
