@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>HTTP5221 Lecture</title>
+		<link href="lecture_1.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+
+		<h1>Demo for the Lesson!</h1>
+
+
+		<section>
+			<h2>Events</h2>
+			<div class="example">
+				<p>Example of button click with named function</p>
+				<button id="change_color">Change color</button>
+			</div>
+			<div class="example" id="change_font_wrapper">
+				<p>Example of button click with anonymous function</p>
+				<button id="change_font">Change font size</button>
+			</div>
+			<div class="example">
+				<p>Example of event object</p>
+				<button id="change_event" class="test-button">See event object</button>
+			</div>
+			<div class="example">
+				<p>Keyboard Events</p>
+				<div class="keys">
+					<div class="input-field">
+						<label for="input-text">Click inside and type any char</label>
+						<input type="text" id="input-text" name="input-text">
+					</div>
+					<div>Code of key up: <div id="keyup"></div></div>
+					<div>Code of key down: <div id="keydown"></div></div>
+				</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="example">
+				<h2>Forms</h2>
+				<form name="location_form" action="#" method="get">
+					<fieldset>
+						<legend>Enter locations</legend>
+						<div class="entry">
+							<p>Location 1</p>
+							<div class="field">
+								<label for="name_1">Name:</label>
+								<input type="text" name="name1" id="name_1"/>
+							</div>
+							<div class="field">
+								<label for="address_1">Address:</label>
+								<input type="text" name="address1" id="address_1"/>
+							</div>
+						</div>
+					</fieldset>
+					<input type="submit" value="Show location" />
+				</form>
+				<div id="location-data">Here we will see the data</div>
+			</div>
+		</section>
+
+		<section>
+			<div class="example">
+				<p>Let's change where link will lead us</p>
+				<a href="https://google.com" id="google-link">Google.com</a>
+			</div>
+		</section>
+
+	<script src="lecture_1.js"></script>
+	</body>
+</html>
