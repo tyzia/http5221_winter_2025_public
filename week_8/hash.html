@@ -1,0 +1,1163 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hash</title>
+</head>
+
+<body>
+	<script>
+		window.onload = onLoadHandle;
+		function onLoadHandle() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Plan
+
+
+		// HEAD
+		// git commit --amend
+		// git rebase
+		// Sync vs Async
+		// Hashes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// HEAD
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// HEAD points to the current commit.
+			// Usually it is the latest commit in
+			// your branch
+
+			// Demo:
+			// > cd 1
+			// > git log --oneline
+			// This will show all commits and will
+			// show that HEAD points to the latest
+			// commit in the history
+
+
+
+
+
+
+			// HEAD helps you to navigate your commits
+			// for such commands as 'rebase', 'reset', 'checkout'
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// git show HEAD
+			// will show latest commit
+
+
+
+
+
+
+
+
+
+
+			// ~ (tilde) refers to previous commit from HEAD
+
+			// Syntax: HEAD~n: Move n commits back from HEAD
+
+
+
+
+
+
+			// Example
+			// HEAD~1 = one commit before the current commit.
+			// HEAD~2 = two commits before the current commit.
+
+
+
+
+
+
+
+			// > git show HEAD~1
+			// Will show commit before the latest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// git commit --amend
+
+
+
+
+
+
+
+
+			// this command allows you to change
+			// latest commit (not any, but only latest)
+
+
+
+			// Demo
+
+			// I have a repo
+			// I have commits in this repo
+			// > git log --oneline
+			// I will add more changes
+			// vim index.html :i change :x
+			// > git add .
+			// > git commit "Wrong name"
+			// How to change this commit message?
+			// > git commit --amend
+
+
+
+
+
+
+
+
+
+
+			// git rebase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// How to change commit message
+			// older than the latest?
+
+			// Let's assume I want to change
+			// commit 3rd from the latest.
+			// I will use 'git rebase' command.
+
+			// git rebase reapplies commits on top
+			// of selected commit.
+
+			// > git rebase HEAD~4
+			// this command will:
+			// 1. Find commit 4 commits before HEAD
+			// 2. Apply all commits after it onto it
+
+			// If I want to specify how specifically
+			// I want to reapply my commits
+			// I will use interactive mode (-i)
+
+			// git rebase -i HEAD~4
+
+			// this command will re-apply
+			// commits one by one
+			// allowing me to modify them
+
+			// When rebasing starts I will see
+			// all commits which will be reapplied.
+
+			// pick abc123 Create file
+			// pick cba321 Add new line
+			// pick 123cab Add more lines
+
+			// I can choose what I want to do
+			// with each commit.
+			// Default is 'pick' meaning git
+			// will pick this commit and apply it.
+
+			// In our case I want to change the
+			// commit message.
+			// I will use 'reword'
+
+			// I will change 'pick' to 'reword'
+			// for particular commit which I want
+			// to change:
+
+			// pick abc123 Create file
+			// reword cba321 Add new line
+			// pick 123cab Add more lines
+
+			// :x (save)
+			// git will start rebase process
+			// and will stop on a commit with 'reword'
+			// I can change commit message
+			// save and continue.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Sync vs Async
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// In JavaScript tasks can be handled in two ways:
+
+		// -- Synchronously
+		// -- Asynchronously (async)
+
+
+
+
+
+
+
+
+
+
+
+
+		// Real-life example:
+
+		// You need to get three answers from A, B, C.
+
+
+
+
+
+
+
+		// Synchronous behavior:
+
+		// You call A and ask for the answer.
+		// A takes some time to give it to you.
+		// While you are waiting for A's answer,
+		// you can't call B or C.
+		// Once you get A's answer, you hang up and then call B.
+		// You repeat this process for C.
+		// This is synchronous behavior because each task
+		// happens one after another.
+		// You have to wait for each task to complete
+		// before moving on to the next one.
+
+
+
+
+
+
+
+		// Asynchronous behavior:
+
+		// You need to get the same three answers.
+		// You call A and ask for the answer,
+		// but instead of waiting, you ask A to
+		// call you back when they have the answer.
+		// Then, you call B and do the same — ask
+		// them to call you back when ready.
+		// You do the same for C.
+		// After that, you wait for their callbacks.
+		// This is asynchronous behavior because you
+		// don’t have to wait for A, B, or C to finish
+		// before starting the next call.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// If we talk about programming:
+
+		// Synchronous (Sync) means tasks happen one after another,
+		// in the order they are written.
+
+		// Asynchronous (Async) means tasks can happen
+		// at the same time, allowing the program to
+		// keep running without waiting for each task to finish.
+
+		// Async behavior can be produced by:
+		// -- API calls
+		// -- event listeners
+		// -- timers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example of sync:
+
+		// console.log("1");
+		// console.log("2");
+		// console.log("3");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example of async:
+
+		// console.log("1");
+		// setTimeout(() => console.log("2"));
+		// console.log("3");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// API example
+
+		// function getWeather() {
+		// 	console.log("Start");
+		// 	fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+		// 		.then(response => console.log('Response', response.json()))
+		// 		.catch(error => console.log("Error:", error));
+		// 	console.log("Finish");
+		// }
+		//
+		// getWeather();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Important to remember!
+
+		// Async is a fundamental part of the JavaScript.
+		// You don’t explicitly code for async behavior
+		// (like with `fetch`, event listeners, or timers).
+		// You need to understand how async works.
+		// But it will work this way even
+		// if you don't understand it ))
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Why async is used?
+
+		// We don’t want the program to freeze
+		// while waiting for long tasks like
+		// network requests or file reading.
+
+
+
+
+
+
+
+
+
+
+		// To make async function behave like synchronous
+		// we need to wait for its response using 'await'
+
+		// async - add this keyword before function definition
+		// await - add this keyword to async operation to wait for response
+
+
+
+
+
+
+
+
+
+
+			// Adding 'async' keyword to a function
+			// will make this function asynchronous
+			// and it will always return a Promise.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// Example
+
+			// Regular arrow function
+
+			// const example = () => 5;
+			// console.log(example());
+
+
+			// Async function returning Promise
+
+			// const example = async () => 5;
+			// console.log(example());
+
+
+			// To get actual result from async function
+
+			// const example = async () => 5;
+			// example().then(result => console.log(result));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Let's make async to behave like sync
+
+		// async function getWeather() {
+		// 	console.log("Start");
+		// 	await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+		// 			.then(response => console.log("Response", response.json()))
+		// 			.catch(error => console.log("Error:", error));
+		// 	console.log("Finish");
+		// }
+		//
+		// getWeather();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// When we talk about asynchronous
+		// we should mention two ways to handle it:
+
+		// -- Promise (http calls)
+		// -- Callbacks (event listeners)
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Promise
+		// A Promise represents a value that will be available in the future.
+		// This is a default way how JS handles async behavior.
+		// -- HTTP requests
+
+		// Promise is a result of asynchronous operation.
+		// It can have two distinct states:
+
+		// -- resolve
+		// -- reject
+
+
+
+
+
+
+
+
+
+
+		// Example of Promise:
+		// const fetchData = fetch('https://api.example.com/data')
+		// 	.then(response => console.log(response.json()))
+		// 	.catch(error => console.log('Error:', error));
+
+
+
+
+
+
+
+
+
+
+
+
+		// .then() - in case promise resolves (returns data)
+		// .catch() - in case promise is rejected (returns error)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Callback
+		// A special function attached to event
+		// when we listen to this event.
+
+
+
+
+
+
+
+
+
+
+
+		// Example of Callback
+
+		// document.querySelector('button').addEventListener('click', function () {
+		// 	console.log('Button was clicked!');
+		// });
+
+		// Callback is:
+
+		// function () {
+		// 	console.log('Button was clicked!');
+		// }
+
+
+		// We wait for event to happen to execute our code.
+		// Our program continues to run without waiting
+		// for button click to occur.
+
+
+
+
+
+
+
+
+
+
+		// Callback can have a name:
+
+		// const handleClick = () => console.log('Click event happened');
+		// document.querySelector('button').addEventListener('click', handleClick);
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// Hashes
+
+
+
+
+
+
+
+
+
+
+		// We do NOT store sensitive data in plain text
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// passwords
+		// emails
+		// date of birth
+		// credit card numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// hash - is a function that produces a fixed-size unique output
+		// or unique "fingerprint" of data.
+
+
+
+
+
+
+
+
+
+
+
+
+		// Hash function converts any kind of data:
+		// -- text
+		// -- number
+		// -- file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Advantages:
+
+		// FIXED LENGTH: always a fixed number of hexadecimal characters:
+		// -- 32 for MD5
+		// -- 64 for SHA-256
+
+		// ONE-WAY: nearly impossible to guess original input
+
+		// ALWAYS THE SAME: the same hash for the same input
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Examples
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Single letter
+
+		// a
+
+		// ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb
+
+
+
+
+
+
+
+
+
+
+		// A word:
+
+		// andrei
+
+		// b9352494463399aa6a44ed5e39425b8a0bc39b2fc3d0184ba2583ce9bc4e4c1d
+
+
+
+
+
+
+
+
+
+
+
+
+		// A number:
+
+		// 1
+
+		// 6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Text:
+
+		/*
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+		Nulla faucibus eu eros non varius. Vivamus dapibus vestibulum fringilla.
+		Nullam malesuada congue nisi, ac bibendum ante pellentesque sit amet.
+		Vestibulum efficitur sed metus ac aliquam. Aenean vehicula euismod malesuada.
+		Nulla facilisi. Proin vel diam orci. Orci varius natoque penatibus et magnis
+		dis parturient montes, nascetur ridiculus mus.
+
+		libero. Vestibulum id accumsan urna. Donec bibendum turpis ut nunc eleifend congue.
+		Sed aliquet augue sem, ac sollicitudin ligula posuere ac. In hac habitasse platea
+		dictumst. Vivamus luctus justo eget finibus egestas. Duis ornare suscipit dui in
+		euismod. Nullam ultrices auctor consectetur. Quisque condimentum tempus dictum.
+		 */
+
+		// 638551872b22552411e1ecbeb9b18362e5077f59b01ca5a14d82467039a650c2
+
+
+
+
+
+
+
+
+
+
+
+
+		// Empty string:
+
+		//
+
+		// e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// MD5
+
+
+
+
+
+
+
+
+
+		// MD5 (Message Digest Algorithm 5) was widely used to generate hashes.
+		// Length 32 characters.
+		// But it has a major flaw:
+
+		// -- vulnerable to collisions.
+
+		// Collision - when two different inputs produce the same hash.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// SHA-256
+
+
+
+		// SHA-256 is more secure and resistant to collisions.
+		// It is a better choice for hashing sensitive information.
+
+		// It is 64 characters long
+
+
+
+
+
+
+
+
+
+
+
+		// How to use SHA-256:
+
+		// 1. Convert your string into byte array
+		// 2. Use built-in JS crypto.subtle.digest() to generate hash (binary data)
+		// 3. Convert binary hash to hexadecimal string
+
+
+
+
+
+
+
+
+
+		// Example Function to hash text using SHA-256
+
+		async function generateHash(text) {
+			const encoder = new TextEncoder();
+			const data = encoder.encode(text);
+
+			const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+			const hashArray = Array.from(new Uint8Array(hashBuffer));
+			return hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+		}
+
+		// generateHash('hello world').then(hash => console.log(hash));
+
+
+
+
+		// Explanation:
+
+		// const encoder = new TextEncoder();
+		// const data = encoder.encode(text);
+		// Converts text into byte array
+
+		// const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+		// Generates hash as byte array
+
+		// new Uint8Array(hashBuffer)
+		// creates a special array of 8-bit unsigned integers
+
+		// const hashArray = Array.from(new Uint8Array(hashBuffer));
+		// creates regular array of numbers and stores it in hashArray
+
+		// byte.toString(16)
+		// converts byte to a hexadecimal string
+		// 255 -> ff
+		// 10 -> a
+
+		// .padStart(2, '0')
+		// to make each value exactly 2 characters long,
+		// we need to pad with 0:
+		// ff -> ff
+		// a  -> 0a
+
+		// hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+		// will convert array into hexadecimal string
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Input: "hello world"
+
+		// SHA-256 output: 8-bit unsigned array
+		// [
+		//      169, 132, 197, 213, 31, 35, 198, 24, 174, 133, 78, 28, 39, 171, 11, 38,
+		// 		221, 217, 248, 9, 41, 100, 12, 235, 139, 1, 246, 116, 140, 222, 42, 155
+		// ]
+
+
+		// Convert SHA-256 output into hexadecimal array:
+		// [
+		//      "a9", "84", "c5", "d5", "1f", "23", "c6", "18", "ae", "85", "4e", "1c",
+		// 		"27", "ab", "0b", "26", "dd", "d9", "f8", "09", "29", "64", "0c", "eb",
+		// 		"8b", "01", "f6", "74", "8c", "de", "2a", "9b"
+		// ]
+
+		// Final result: a 64 character string:
+		// "a984c5d51f23c618ae854e1c27ab0b26ddd9f80929640ceb8b01f6748cde2a9b"
+
+
+
+
+
+
+
+
+
+
+
+			// How to combine the result from two or more Promises?
+
+			// Promise.all([promise1, promise2, promise3])
+			//    .then(([data1, data2, data3]) => { ... });
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example of usage
+
+		// We have a predefined hashed password
+		// We will ask user for input
+		// We will compare this input to hashed password
+		// If they are identical, we will show welcome message
+
+
+
+
+		// const password = 'r8g#(-0ASD@%';
+		// const userInput = 'a';
+		// Promise.all([generateHash(password), generateHash(userInput)])
+		// 	.then(([passHash, userHash]) => {
+		// 		if (userHash === passHash) {
+		// 			console.log(`"${userInput}" is a success because password is "${password}"`);
+		// 		} else {
+		// 			console.log(`"${userInput}" failed because password is "${password}"`);
+		// 		}
+		// 	});
+
+
+
+
+
+
+
+		// Thank you
+
+
+
+
+
+
+
+
+
+}
+	</script>
+<button>click me</button>
+</body>
+</html>
