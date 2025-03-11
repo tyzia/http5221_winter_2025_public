@@ -1,0 +1,1523 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Hash</title>
+</head>
+
+<body>
+	<script>
+		"use strict";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Plan
+
+
+
+		// Error handling
+
+		// try-catch
+
+		// Object destructuring
+
+		// Unit testing
+
+		// TDD
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Error handling
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// What should we do if error happens?
+		// How to recover from unexpected situations?
+
+
+
+
+
+
+
+
+
+
+
+		// Example
+
+		// function showName(a) {
+		//    return a.name;
+		// }
+		//
+		// let result;
+		// result = showName(null); // Uncaught TypeError: Cannot read properties of null (reading 'name')
+		// console.log("you will never see this line");
+
+
+
+
+
+		// The app stops working after the line with
+		// error and no code below that line
+		// will be executed.
+
+
+
+
+
+
+
+
+
+
+		// Let's fix our code
+		// You noticed 'Uncaught TypeError'
+		// This means that JS threw an error while
+		// executing our code and we didn't catch
+		// that error.
+
+		// Let's catch any error that comes out.
+
+
+
+		// The syntax which we will use is:
+
+		// try { riskyOperation } catch(error) { whatToDoInCaseOfError }
+
+
+		// - riskyOperation - the code which might throw an error.
+		// - whatToDoInCaseOfError - if error happens, we handle it here.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example
+
+		// function showName(a) {
+		//    return a.name;
+		// }
+		//
+		// let result;
+		//
+		// try {
+		// 	result = showName(null); // this line causes the error
+		// } catch(err) {
+		// 	console.log(`there was an error: ${err}`);
+		// }
+		//
+		// console.log("you will now see this line");
+
+
+
+		// Even if we still triggered an error
+		// our code was able to handle it and
+		// proceed with the execution of the app.
+
+
+
+
+
+
+
+		// Try-catch block allows you to safely execute
+		// risky code and react or handle any errors
+		// which may appear.
+
+
+
+
+
+
+
+
+
+		// In the example above JS generated standard error for us.
+		// But we can create our own errors.
+
+		// Let's see first why I need custom errors.
+
+
+
+
+
+
+
+
+
+
+
+
+		// function showName(a) {
+		//    return a.name;
+		// }
+		//
+		// let result;
+		//
+		// [ null, undefined ].forEach(val => {
+		// 	try {
+		// 		result = showName(val);
+		// 	} catch(err) {
+		// 		console.log(`there was an error: ${err}`);
+		// 	}
+		// });
+
+
+
+		// In this example I provide two different wrong
+		// values - null, undefined - but get the same
+		// error message.
+
+		// What if I want to throw different error messages?
+
+		// I will need to throw errors from my function myself.
+
+
+
+
+
+
+
+
+
+
+		// Throw error
+
+
+
+
+
+
+
+
+		// Syntax: throw new Error('my message');
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// function showName(a) {
+		// 	if (a === undefined) {
+		// 		throw new Error('You provided undefined value');
+		// 	}
+		//
+		// 	if (a === null) {
+		// 		throw new Error('You provided null value');
+		// 	}
+		//    return a.name;
+		// }
+		//
+		// let result;
+		//
+		// [ null, undefined ].forEach(val => {
+		// 	try {
+		// 		result = showName(val);
+		// 	} catch(err) {
+		// 		console.log(`there was an error: ${err}`);
+		// 	}
+		// });
+
+
+
+
+		// Now I customized error message and see different
+		// errors in my console.
+
+
+
+
+
+
+
+
+
+		// I can make even more things with
+		// custom errors. I can handle them
+		// differently.
+
+
+
+
+
+
+
+
+
+
+
+
+		// function showName(a) {
+		// 	if (a === undefined) {
+		// 		throw new Error('You provided undefined value');
+		// 	}
+		//
+		// 	if (a === null) {
+		// 		throw new Error('You provided null value');
+		// 	}
+		//    return a.name;
+		// }
+		//
+		// let result;
+		//
+		// [ null, undefined, { name: 'Andrei'} ].forEach(val => {
+		// 	try {
+		// 		result = showName(val);
+		// 	} catch(err) {
+		// 		if (err.message === 'You provided undefined value') {
+		// 			console.error('Something was wrong');
+		// 		}
+		// 		if (err.message === 'You provided null value') {
+		// 			console.warn('Try again');
+		// 		}
+		// 	}
+		// });
+		//
+		// console.log(result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Checking for error messages is not so convenient
+		// I can make a mistake in error message
+		// and it will be not caught
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// function showName(a) {
+		// 	if (a === undefined) {
+		// 		throw new Error('You provided undefined value');
+		// 	}
+		//
+		// 	if (a === null) {
+		// 		throw new Error('You provided null value');
+		// 	}
+		//    return a.name;
+		// }
+		//
+		// let result;
+		//
+		// [ null, undefined, { name: 'Andrei'} ].forEach(val => {
+		// 	try {
+		// 		result = showName(val);
+		// 	} catch(err) {
+		// 		if (err.message === 'you provided undefined value') { // lowercase 'y' instead of 'Y'
+		// 			console.error('Something was wrong');
+		// 		}
+		// 		if (err.message === 'You provided null value') {
+		// 			console.warn('Try again');
+		// 		}
+		// 	}
+		// });
+		//
+		// console.log(result);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// To avoid this kind of mistakes in the code
+		// developers prefer to throw:
+		// error code + error message.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// function showName(a) {
+		// 	if (a === undefined) {
+		// 		const error = new Error('You provided undefined value');
+		// 		error.code = 'ERR_UNDEFINED';
+		// 		throw error;
+		// 	}
+		//
+		// 	if (a === null) {
+		// 		const error = new Error('You provided null value');
+		// 		error.code = 'ERR_NULL';
+		// 		throw error;
+		// 	}
+		//    return a.name;
+		// }
+		//
+		// let result;
+		//
+		// [ null, undefined, { name: 'Andrei'} ].forEach(val => {
+		// 	try {
+		// 		result = showName(val);
+		// 	} catch(err) {
+		// 		if (err.code === 'ERR_UNDEFINED') {
+		// 			console.error('Something was wrong');
+		// 		}
+		// 		if (err.code === 'ERR_NULL') {
+		// 			console.warn('Try again');
+		// 		}
+		// 	}
+		// });
+		//
+		// console.log(result);
+
+
+
+
+
+
+		// Now I am using error codes to handle
+		// different errors differently.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Why not false?
+
+		// Are there alternatives to handle errors?
+		// Let's return false instead of throwing an error.
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example of function which will return:
+
+		// - true if number is not 42
+		// - false if number is 42
+		// - false if not a number (instead of error)
+
+
+
+
+
+
+
+
+
+		// function isEven(val) {
+		// 	if (typeof val !== 'number') {
+		// 		return false; // instead of throwing error
+		// 	}
+		//
+		// 	return val % 2 === 0;
+		// }
+		//
+		// [10, 5, 'invalid', null, undefined, {}].forEach(val => {
+		// 	try {
+		// 		const result = isEven(val);
+		// 		if (result) {
+		// 			console.log(`${val} is even`);
+		// 		} else {
+		// 			console.log(`${val} is odd`);
+		// 		}
+		// 	} catch (err) {
+		// 		console.error(`Error for ${val}: ${err.message}`);
+		// 	}
+		// });
+
+
+
+
+
+		// Here false is legit answer to question 'isEven'.
+		// But I was using 'false' instead of error
+		// and that introduced the confusion.
+
+
+
+
+
+
+		// To sum up:
+		// Without throwing an error, it would be harder
+		// for the rest of the code to know what
+		// went wrong and how to react to the issue properly.
+
+
+
+
+
+
+
+
+		// Remember, in JavaScript, proper error handling
+		// is not just a good practice; it’s essential for
+		// building reliable, maintainable applications
+		// that can gracefully handle unexpected situations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Object destructuring
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Object destructuring is a powerful feature in JavaScript.
+		// It allows to extract properties from objects.
+		// And assign them to variables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example
+
+		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+		// const name = person.name;
+		// const age = person.age;
+		// const city = person.city;
+		// console.log(name); // 'Alice'
+		// console.log(age); // 25
+		// console.log(city); // 'Wonderland'
+
+
+
+		// Here I extracted values from the array and assigned
+		// them to corresponding values.
+
+
+
+
+
+
+
+
+
+
+		// I can do the same but in a concise way
+		// with Object destructuring:
+
+
+
+		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+		// const { name, age, city } = person;
+		// console.log(name); // 'Alice'
+		// console.log(age); // 25
+		// console.log(city); // 'Wonderland'
+
+
+
+
+
+
+
+
+
+
+
+
+		// I may wish not to extract all properties,
+		// but only those which I need:
+
+		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+		// const { age } = person;
+		// console.log(age); // 25
+
+
+
+
+
+
+
+
+
+
+
+
+		// I can set default values in case property doesn't exist
+
+		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+		// const { age = 18, country = 'Unknown' } = person;
+		// console.log(age); // 25
+		// console.log(country); // 'Unknown'
+
+
+		// Default property will be used only if value
+		// is undefined.
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// const person = { name: 'Alice', age: null, city: 'Wonderland' };
+		// const { age = 18 } = person;
+		// console.log(age); // null
+
+
+		// Default property is not used because the value
+		// of 'age' property is not undefined.
+
+
+
+
+
+
+
+
+
+
+
+
+		// We can use destructuring in
+		// function parameters
+
+
+
+
+
+
+
+
+
+
+
+		// const person = { name: 'Alice', age: 25, city: 'Wonderland' };
+		//
+		// function greet({ name, age }) {
+		//     console.log(`Hello, ${name}! You are ${age} years old.`);
+		// }
+		//
+		// greet(person); // 'Hello, Alice! You are 25 years old.'
+
+
+
+
+
+
+
+
+
+
+		// You can't destructure null or undefined
+
+		// const { name } = null; // TypeError: Cannot destructure property 'name' of 'null'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Unit tests
+
+
+
+
+
+
+
+
+
+		// Unit test - when we test the unit of code.
+		// Usually unit refers to a function.
+
+		// When I say 'test' that means we
+		// verify that our function:
+
+		// -- Is doing what it is supposed to do.
+		// -- Is not doing what it is not supposed to do.
+
+
+
+
+
+
+
+
+
+
+
+
+		// Let's have a simple function
+		// and a function to test it.
+
+		// - add()
+		// - testAdd()
+
+
+
+
+		// Test function will have three parameters:
+		// - valueA & valueB - for add()
+		// - expected result
+
+
+
+
+
+
+
+
+
+		// function add(a, b) {
+		// 	return a + b;
+		// }
+		//
+		// function testAdd(valueA, valueB, result) {
+		// 	return add(valueA, valueB) === result;
+		// }
+		//
+		// [
+		// 	{ valueA: 1, valueB: 1, result: 2 },
+		// 	{ valueA: 2, valueB: 2, result: 4 },
+		// 	{ valueA: 3, valueB: 2, result: 5 },
+		// 	{ valueA: -3, valueB: 2, result: -1 },
+		// ].forEach(val => console.log(testAdd(val.valueA, val.valueB, val.result)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Let's have another example with function
+		// validating age between 18 and 25 years
+		// And our original function will have an error.
+
+
+
+
+
+
+
+
+
+
+
+
+		// function isValidAge(age) {
+		// 	return age > 18 || age < 25;
+		// }
+		//
+		//
+		// function testIsValidAge() {
+		// 	const testCases = [
+		// 		{ age: 1, expected: false },
+		// 		{ age: 20, expected: true },
+		// 		{ age: 200, expected: false },
+		// 	];
+		//
+		// 	testCases.forEach(({ age, expected }) => {
+		// 		const result = isValidAge(age);
+		// 		if (result === expected) {
+		// 			console.log(`Test passed for age ${age}`);
+		// 		} else {
+		// 			console.error(`Test failed for age ${age}: expected ${expected}, got ${result}`);
+		// 		}
+		// 	});
+		// }
+		//
+		// testIsValidAge();
+
+
+
+
+
+
+
+
+		// Our test function revealed error in original function.
+		// This helps us to fix any bugs at the development stage.
+
+
+
+
+
+
+
+
+		// Let's fix our code and run tests again
+
+
+
+
+
+
+
+
+
+
+
+
+		// Now let's talk about edge cases.
+
+		// In our example: validate age between 18 and 25.
+		// Edge cases are extreme values of my range 18-25:
+		// - 17
+		// - 18
+		// - 19
+		// - 24
+		// - 25
+		// - 26
+
+
+
+
+
+
+
+
+		// function isValidAge(age) {
+		// 	return age > 18 && age < 25;
+		// }
+		//
+		// function testIsValidAge() {
+		// 	const testCases = [
+		// 		{ age: 17, expected: false },
+		// 		{ age: 18, expected: true },
+		// 		{ age: 19, expected: true },
+		// 		{ age: 24, expected: true },
+		// 		{ age: 25, expected: true },
+		// 		{ age: 26, expected: false },
+		// 	];
+		//
+		// 	testCases.forEach(({ age, expected }) => {
+		// 		const result = isValidAge(age);
+		// 		if (result === expected) {
+		// 			console.log(`Test passed for age ${age}`);
+		// 		} else {
+		// 			console.error(`Test failed for age ${age}: expected ${expected}, got ${result}`);
+		// 		}
+		// 	});
+		// }
+		//
+		// testIsValidAge();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Test error handling
+
+
+
+
+		// I would write tests to check that if input
+		// to my function is invalid,
+		// function should return an error.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// One important note here:
+		// Usually you will get business requirements
+		// for your code. As in our example
+		// business requirements will be:
+		// "Validate that age is between 18 and 25".
+
+		// But it is your responsibility
+		// to make sure the app doesn't
+		// crash if there is unexpected or invalid input.
+
+		// Common examples of these inputs:
+
+		// -- undefined
+		// -- null
+		// -- string instead of number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// function isValidAge(age) {
+		// 	return age >= 18 && age <= 25;
+		// }
+		//
+		// function testIsValidAge() {
+		// 	const testCases = [
+		// 		{ age: 17, expected: false },
+		// 		{ age: 18, expected: true },
+		// 		{ age: 19, expected: true },
+		// 		{ age: 24, expected: true },
+		// 		{ age: 25, expected: true },
+		// 		{ age: 26, expected: false },
+		// 		{ age: undefined, expected: 'Invalid input: age must be a number' },
+		// 		{ age: 'not a number', expected: 'Invalid input: age must be a number' },
+		// 		{ age: null, expected: 'Invalid input: age must be a number' },
+		// 	];
+		//
+		// 	testCases.forEach(({ age, expected }) => {
+		// 		try {
+		// 			const result = isValidAge(age);
+		// 			if (result === expected) {
+		// 				console.log(`Test passed for age ${age}`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected ${expected}, got ${result}`);
+		// 			}
+		// 		} catch (err) {
+		// 			if (err.message === expected) {
+		// 				console.log(`Test passed for age ${age}: expected error "${expected}"`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected error "${expected}", got "${err.message}"`);
+		// 			}
+		// 		}
+		// 	});
+		// }
+		//
+		// testIsValidAge();
+
+
+
+
+		// As a result I can see that my function
+		// doesn't handle errors correctly.
+		// Let's fix code in original function.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// function isValidAge(age) {
+		// 	if (typeof age !== 'number') {
+		// 		throw new Error('Invalid input: age must be a number');
+		// 	}
+		// 	return age >= 18 && age <= 25;
+		// }
+		//
+		// function testIsValidAge() {
+		// 	const testCases = [
+		// 		{ age: 17, expected: false },
+		// 		{ age: 18, expected: true },
+		// 		{ age: 19, expected: true },
+		// 		{ age: 24, expected: true },
+		// 		{ age: 25, expected: true },
+		// 		{ age: 26, expected: false },
+		// 		{ age: undefined, expected: 'Invalid input: age must be a number' },
+		// 		{ age: 'not a number', expected: 'Invalid input: age must be a number' },
+		// 		{ age: null, expected: 'Invalid input: age must be a number' },
+		// 	];
+		//
+		// 	testCases.forEach(({ age, expected }) => {
+		// 		try {
+		// 			const result = isValidAge(age);
+		// 			if (result === expected) {
+		// 				console.log(`Test passed for age ${age}`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected ${expected}, got ${result}`);
+		// 			}
+		// 		} catch (err) {
+		// 			if (err.message === expected) {
+		// 				console.log(`Test passed for age ${age}: expected error "${expected}"`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected error "${expected}", got "${err.message}"`);
+		// 			}
+		// 		}
+		// 	});
+		// }
+		//
+		// testIsValidAge();
+
+
+
+
+		// I have fixed my code in isValidAge() by adding
+		// error handling logic. Now all my tests pass.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// So I started with this code:
+
+		// function isValidAge(age) {
+		// 	return age > 18 || age < 25;
+		// }
+
+		// And due to my tests I was able
+		// to improve my code to this:
+
+
+		// function isValidAge(age) {
+		// 	if (typeof age !== 'number') {
+		// 		throw new Error('Invalid input: age must be a number');
+		// 	}
+		// 	return age >= 18 && age <= 25;
+		// }
+
+
+
+
+
+
+
+
+
+
+		// To sum up:
+		// Traditional approach in coding is this:
+
+		// 1) Create code according to requirements.
+		// 2) Write unit tests according to requirements.
+		// 3) Run the tests and find bugs in original code.
+		// 4) Fix original code to pass the tests.
+
+
+
+
+
+
+
+
+
+
+
+		// Alternative approach is TDD
+		// Test Driven Development
+
+
+
+
+
+
+
+
+
+
+
+
+		// TDD
+
+		// TDD is a software development approach
+		// in which tests are written before the actual code.
+
+		// -- First, you create tests to verify a particular task.
+		// -- Second, you create code to do that task.
+
+
+
+
+
+
+
+
+
+
+		// Steps:
+		// 1) Write unit tests according to requirements
+		// 2) Run the tests, they should all fail.
+		// 3) Create code.
+		// 4) Re-run the tests and find bugs in original code.
+		// 5) Fix original code to pass the tests.
+
+
+
+
+
+
+
+
+
+
+
+
+		// In TDD we move important step (unit test)
+		// to be done first and only after we finished
+		// unit tests, we start writing actual code.
+
+
+
+
+
+
+
+
+		// With TDD, you ensure you account for all
+		// requirements and edge cases before
+		// you even write the code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/// The TDD Cycle
+
+		// -- Red (create test which should fail)
+		// -- Green (add code and test should pass)
+		// -- Refactor (enhance code)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// "Red" Step
+
+		// 1) Create a test for the feature you are going to implement.
+		// 2) Since there is no actual feature yet, the test will fail.
+
+
+		// "Green" Step
+
+		// 1) Create code to implement the feature.
+		// 2) Run existing tests, they should pass now.
+
+
+		// "Refactor" Step
+
+		// Clean up and/or optimize your code while
+		// ensuring that all tests still pass.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Example
+
+
+
+
+
+
+
+
+
+
+		// Step 1 - create unit tests
+
+
+
+
+		// function isValidAge(age) {
+		// 	// empty
+		// }
+		//
+		// function testIsValidAge() {
+		// 	const testCases = [
+		// 		{ age: 17, expected: false },
+		// 		{ age: 18, expected: true },
+		// 		{ age: 19, expected: true },
+		// 		{ age: 24, expected: true },
+		// 		{ age: 25, expected: true },
+		// 		{ age: 26, expected: false },
+		// 		{ age: undefined, expected: 'Invalid input: age must be a number' },
+		// 		{ age: 'not a number', expected: 'Invalid input: age must be a number' },
+		// 		{ age: null, expected: 'Invalid input: age must be a number' },
+		// 	];
+		//
+		// 	testCases.forEach(({ age, expected }) => {
+		// 		try {
+		// 			const result = isValidAge(age);
+		// 			if (result === expected) {
+		// 				console.log(`Test passed for age ${age}`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected ${expected}, got ${result}`);
+		// 			}
+		// 		} catch (err) {
+		// 			if (err.message === expected) {
+		// 				console.log(`Test passed for age ${age}: expected error "${expected}"`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected error "${expected}", got "${err.message}"`);
+		// 			}
+		// 		}
+		// 	});
+		// }
+		//
+		// testIsValidAge();
+
+
+
+
+
+
+
+
+
+
+		// Step 2 - create code
+
+
+
+
+		// function isValidAge(age) {
+		// 	return age > 18 || age < 25;
+		// }
+		//
+		// function testIsValidAge() {
+		// 	const testCases = [
+		// 		{ age: 17, expected: false },
+		// 		{ age: 18, expected: true },
+		// 		{ age: 19, expected: true },
+		// 		{ age: 24, expected: true },
+		// 		{ age: 25, expected: true },
+		// 		{ age: 26, expected: false },
+		// 		{ age: undefined, expected: 'Invalid input: age must be a number' },
+		// 		{ age: 'not a number', expected: 'Invalid input: age must be a number' },
+		// 		{ age: null, expected: 'Invalid input: age must be a number' },
+		// 	];
+		//
+		// 	testCases.forEach(({ age, expected }) => {
+		// 		try {
+		// 			const result = isValidAge(age);
+		// 			if (result === expected) {
+		// 				console.log(`Test passed for age ${age}`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected ${expected}, got ${result}`);
+		// 			}
+		// 		} catch (err) {
+		// 			if (err.message === expected) {
+		// 				console.log(`Test passed for age ${age}: expected error "${expected}"`);
+		// 			} else {
+		// 				console.error(`Test failed for age ${age}: expected error "${expected}", got "${err.message}"`);
+		// 			}
+		// 		}
+		// 	});
+		// }
+		//
+		// testIsValidAge();
+
+
+
+
+
+
+
+
+
+		// Step 3, 4, etc - fix code and make sure
+		// all tests pass.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Summary:
+
+
+		// Traditional approach
+
+		// Create code according to requirements.
+		// Write tests and verify that code is working.
+		// Fix code if needed.
+
+		// TDD approach
+
+		// Write tests to verify all cases.
+		// Run tests, they should fail.
+		// Create code and rerun tests.
+		// Fix code so that all tests pass.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Meme
+
+
+
+
+
+
+
+
+
+
+
+		// QA (tester) walks into a bar
+		// Runs into a bar
+		// Slides into a bar
+		// Sneaks into a bar
+		// Roll into a bar,
+		// Orders 1 beer,
+		// Orders 0 beer,
+		// Orders 999999 beers,
+		// Orders -1 beer,
+		// Orders a lizard,
+		// Orders dnrifovudirotf
+
+		// User walks into a bar
+		// and asks, where the toilet is.
+		// Whole bar crashes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// Thank you
+
+
+
+
+
+	</script>
+</body>
+</html>
