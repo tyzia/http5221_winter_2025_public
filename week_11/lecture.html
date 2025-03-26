@@ -1,0 +1,790 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lecture</title>
+</head>
+
+<body>
+<script>
+    "use strict";
+
+
+
+
+
+
+
+
+
+
+
+    // Plan
+
+
+
+    // "use strict"
+    // Naming convention: B.E.M.
+    // window.location
+    // Test Coverage
+    // Testing Pyramid
+    // Integration testing
+    // E2E
+    // User Testing
+    // Automated testing
+    // Cypress
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // "use strict"
+
+
+
+
+
+
+
+
+
+    // "use strict" is a directive
+    // that enables strict mode in JavaScript.
+    // In other words it is enforcing
+    // stricter rules for writing JavaScript code.
+
+
+
+
+
+
+
+
+
+
+    // How to use?
+
+    // Add "use strict"; string:
+    // -- to the top of your JS file
+    // (Enables strict mode for the entire script)
+
+    // -- inside any function
+    // (Enables strict mode for this function only)
+
+
+
+
+
+
+
+    // Example
+
+    // "use strict";
+    // function myFunction() {
+    //     ...
+    // }
+
+    // ...
+    // function myFunction() {
+    //     "use strict";
+    //     ...
+    // }
+    // ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Modern browsers encourage using 'const' and 'let',
+    // which reduce the need for "use strict".
+
+    // TypeScript, as a superset of JavaScript, is able
+    // to enforce strict mode rules without "use strict".
+
+    // For legacy JavaScript code, adding "use strict" is
+    // highly recommended to catch common mistakes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // B.E.M. (Block, Element, Modifier)
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // It is example of naming convention
+    // how you should name your CSS classes
+    // so that it is easier to understand the structure.
+
+
+
+
+
+
+
+
+
+
+    // Example of B.E.M. syntax is:
+
+    // .blockClass__element--modifier
+
+
+    // HTML
+    // <section class=".blockClass">
+    //      <p class=".blockClass__element"> ... </p>
+    //      <p class=".blockClass__element--modifier"> ... </p>
+    // </section>
+
+    // CSS
+    // .blockClass { ... }
+    // .blockClass__element { ... }
+    // .blockClass__element--modifier { ... }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 3 Parts of B.E.M.
+
+
+
+
+
+
+
+    // 1) B = Block
+
+    // A standalone component or section of the page.
+
+    // Example:
+    // - navigation bar (.nav)
+    // - header (.header)
+    // - button (.button)
+
+
+
+    // HTML
+    // <button class="button">Click Me</button>
+
+    // CSS
+    // .button { padding: 10px 20px; }
+
+
+
+
+
+
+
+    // 2) E = Element
+
+    // A part inside a block.
+
+    // Example:
+    // - a button inside a navigation bar (.nav__button)
+    // - a title inside a header (.header__title)
+
+
+
+    // HTML
+    /*
+    <button class="button">
+        <span class="button__icon">+</span> Add Item
+    </button>
+     */
+
+    // CSS
+    // .button__icon { margin-right: 5px; }
+
+
+
+
+
+
+    // 3) M = Modifier
+
+    // A variation of a block or element.
+
+    // Example:
+    // - a red button (.nav__button--red)
+    // - a large title (.header__title--large)
+
+
+
+    // HTML
+    // <button class="button button--red">Delete</button>
+
+    // CSS
+    // .button--red { background-color: red; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // window.location
+
+
+
+
+
+
+
+
+    // The window.location object is a powerful tool
+    // in JavaScript. It allows you to interact
+    // with the current URL of the page.
+
+
+
+
+
+
+
+    // You can:
+
+    // - read the URL
+    // - modify the URL
+    // - redirect users
+    // - extract query strings
+
+
+
+
+
+
+
+
+
+    // Query strings
+
+
+
+
+
+
+
+    // Demo
+    // open google.com
+    // and search for 'humber'
+
+    // https://www.google.com/search?q=humber&sca_esv=4ad496d1768baf99&source=hp&ei=x7_gZ_zLEdWP0PEPxoDOkAo&iflsig=ACkRmUkAAAAAZ-DN17_AN5eilh0D_z-67yuPu3Biy33C&ved=0ahUKEwi8y7qy0qGMAxXVBzQIHUaAE6IQ4dUDCBg&uact=5&oq=humber&gs_lp=Egdnd3Mtd2l6IgZodW1iZXIyBRAAGIAEMgUQABiABDIOEC4YgAQYxwEYjgUYrwEyBRAAGIAEMgsQLhiABBjRAxjHATIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAESLEeUMsTWJ8acAF4AJABAJgBmwGgAYQFqgEDMy4zuAEDyAEA-AEBmAIGoAK9BagCAMICBRAuGIAEmAMD8QU1Nt9hLVCxiZIHAzAuNqAHv0CyBwMwLja4B70F&sclient=gws-wiz
+
+
+    // Anything after question (?) mark in the URL
+    // is a query string.
+
+    // The syntax of query string is:
+
+    // url ? paramOne = value1 && paramTwo = value2 && ...
+    // (in real life no spaces between)
+
+
+    // So from google search example we have:
+
+    // q = humber
+    // sca_esv = 4ad496d1768baf99
+    // source = hp
+    // ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Properties of the window.location object
+
+
+    // href = the full URL of the current page.
+    // host = the hostname and port of the URL.
+    // hostname = the hostname of the URL (without the port).
+    // path = the path of the URL after the hostname.
+    // search = the query string.
+    // hash = the fragment identifier (everything after the #).
+
+
+
+
+
+    // Examples
+
+
+    // console.log(window.location.href); // "https://example.com/about.html?link=menu"
+    // console.log(window.location.host); // "example.com:8080"
+    // console.log(window.location.hostname); // "example.com"
+    // console.log(window.location.pathname); // "/about.html"
+    // console.log(window.location.search); // "?link=menu"
+    // console.log(window.location.hash); // "#section1"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // demo of code with window.location
+    // query.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Test coverage
+
+
+
+
+
+
+
+
+
+
+
+
+    // How much % of your code is
+    // covered with tests.
+
+    // High coverage reduces the risk of bugs
+    // but doesn’t guarantee perfection.
+
+
+
+
+
+
+
+
+
+
+    // Testing Pyramid
+
+
+
+
+
+
+    // A model which specifies three levels of testing
+    // and sets their priorities.
+
+
+
+    // Bottom: Unit testing
+
+    // We already covered that unit testing
+    // verifies a unit (function) of code.
+
+
+    // Middle: Integration Testing
+
+    // Test interactions between components
+    // or modules. Can involve many units
+    // of code (functions).
+
+
+    // Top: End-to-End testing
+
+    // When we test entire system or app.
+
+
+
+
+    // The higher in the pyramid
+    // the more complex and "expensive"
+    // is to implement the test.
+
+
+    // Hence you will usually have more tests
+    // from the bottom (unit tests), little less from
+    // the middle (integration tests) and less
+    // from the top (E2E tests).
+
+
+
+
+
+
+
+
+
+
+
+    // Integration Testing
+
+    // - Tests how different modules or functions work together.
+    // - For Example: Testing a function that calls another function
+    // to ensure they integrate correctly.
+
+
+
+
+
+
+
+
+
+    // End-to-End (E2E) Testing
+
+
+
+
+
+
+
+
+
+
+    // E2E testing is a critical part
+    // to make sure your app works as a whole.
+    // From start to finish.
+    // E2E simulates real-world user scenarios.
+    // Unlike unit or integration testing, E2E testing
+    // focuses on the entire system, including
+    // external integrations and user workflows.
+
+
+
+
+    // Why E2E Testing?
+    // - Catches bugs in user workflows.
+    // - Ensures all components work together.
+    // - Validates the system as a whole.
+
+
+
+
+
+
+
+
+
+    // Types of E2E Testing
+
+    // 1) User Testing
+    // 2) Automated Testing
+
+
+
+
+
+
+
+
+
+    // User Testing
+
+    // - A human tester performs common user actions
+    // (e.g., logging in, submitting a form).
+    // - Pros: Real user feedback.
+    // - Cons: Time-consuming and not scalable.
+
+
+
+
+
+
+
+
+
+    // Automated Testing
+
+    // - Software performs predefined user actions.
+    // - Pros: Fast, repeatable, and scalable.
+    // - Cons: Requires maintenance and initial setup.
+
+
+
+
+
+
+
+
+
+
+
+
+    // Cypress
+
+    // https://cypress.io
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Automated E2E Testing Engine
+
+
+
+
+
+
+
+
+    // Cypress is a modern JavaScript-based testing framework
+    // designed for E2E testing.
+
+    // Here’s why it’s powerful:
+    // - runs in the browser.
+    // - simple syntax
+    // - automating most of user interactions
+    // (clicks, filling in forms, submitting forms)
+    // - validates the results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // How to install?
+
+    // 1) With NPM:
+    // > npm init -y
+    // > npm install cypress --save-dev
+    // > npx cypress open
+
+    // 2) Manually:
+    // Download standalone version:
+    // https://download.cypress.io/app
+
+
+
+
+
+
+
+
+
+
+
+    // Demo installation of Cypress
+    // > mkdir empty
+    // > cd empty
+    // > npm init -y
+    // > npm install cypress --save-dev
+    // > npx cypress open
+
+
+
+
+
+
+
+
+
+
+
+
+    // Let's imagine I need to open a page
+    // and click on 'focus' link.
+
+
+    // Steps:
+
+    // Go to: https://example.cypress.io/
+    // Find 'focus'
+    // Click on it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // To demo the Lecture:
+
+    // open /demo/cypress/e2e/example.spec.cy.js
+
+    // start Cypress.app, select project /example and run it in browser
+
+
+
+
+
+
+
+
+
+
+
+    // Now as we learned how Cypress is used,
+    // let's use it for our task.
+
+
+
+
+
+
+    // demo in /demo/example.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Thank you
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
