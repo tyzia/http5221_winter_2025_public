@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Memory Leak Demo</title>
+    <script>
+        let leakedElements = [];
+        function createLeak() {
+            leakedElements.forEach(el => el.remove());
+            leakedElements = [];
+            for (let i = 0; i < 1000; i++) {
+                const element = document.createElement('div');
+                document.body.appendChild(element);
+                leakedElements.push(element);
+            }
+        }
+    </script>
+</head>
+<body>
+<button onclick="createLeak()">Create Leak</button>
+</body>
+</html>

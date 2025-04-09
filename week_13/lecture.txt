@@ -1,0 +1,1001 @@
+
+
+
+
+
+
+
+Always keep your DevTools open in browser
+
+
+
+
+
+
+
+
+Plan
+
+
+Why testing
+Ad Hoc testing
+Ad Hoc checklist
+Tools
+Memory Leak
+DevTools
+Web Performance
+Lighthouse extension
+WAVE extension
+Validators
+HTML validator
+CSS validator
+Links validator
+Browser compatibility
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Why to test?
+
+
+
+- Ensures code works as expected.
+- Catches bugs early.
+- Improves code quality and maintainability.
+
+
+
+
+
+
+
+Types of Testing
+
+- Unit Testing (Jasmine)
+- Integration Testing
+- End-to-End Testing (Cypress)
+- Ad Hoc Testing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ad Hoc Testing
+
+
+
+
+
+
+
+
+
+
+Ad Hoc Testing - Unplanned, unstructured testing
+without formal test cases.
+
+
+
+
+
+
+
+
+Ad hoc testing can be performed when there is
+limited time to do exhaustive testing and
+usually performed after the formal test execution.
+Ad hoc testing will be effective only if the tester
+has in-depth understanding about the System Under Test.
+
+
+
+Ad Hoc Testing is carried out with the knowledge
+of the tester about the application and the tester
+tests randomly without following the
+specifications/requirements.
+
+Hence the success of Ad hoc testing depends upon
+the capability of the tester, who carries out
+the test. The tester has to find defects without
+any proper planning and documentation, solely
+based on tester's intuition.
+
+
+
+
+
+
+
+
+
+
+Pros:
+
+- Fast
+- Flexible
+- Finds unexpected bugs
+
+
+
+
+
+
+
+
+
+Cons:
+
+- Not reproducible
+- Lacks documentation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ad Hoc vs Structured Testing
+
+
+
+
+
+Ad Hoc: No predefined cases
+Structured: Follows test scripts
+
+Ad Hoc: Informal approach
+Structured: Formal and documented
+
+Ad Hoc: Quick feedback
+Structured: Systematic validation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ad Hoc Checklist
+
+
+
+You will use a checklist when doing Ad Hoc Testing:
+
+Functionality testing:
+- Is HTML valid?
+- Is CSS valid?
+- Are links broken?
+- Is JS valid?
+- Are there any console errors or warnings
+
+Compatibility testing:
+- Does it look good in all major browsers?
+- Does it look good on mobile or tablet?
+
+Performance testing:
+- DebTools for memory leaks
+- Lighthouse extension for Web Performance
+- Load testing
+
+Some popular testing tools for Load Testing:
+- Apache JMeter
+- Load Runner
+- Borland Silk Performer.
+- Rational Performance Tester
+- WAPT
+- NEO LOAD
+- K6.io (formerly loadimpact.com)
+
+Accessibility testing:
+- WAVE extension
+
+Security testing:
+- Login (valid/invalid)
+- SSL Certificates
+- URL & query strings
+- Input fields
+- Access to directories
+- Check responses to security breaches
+- CAPTCHA
+- Moving from HTTPS to HTTP page
+- Password fields are type=“password”
+- User / role access levels
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tools
+
+
+
+
+
+
+
+Ad hoc testing becomes powerful when
+combined with the right tools.
+
+
+
+- Browser DevTools (Chrome/Firefox)
+Debug JS, audit performance, inspect elements.
+
+- Extensions (WAVE, Lighthouse)
+Test accessibility, SEO, and performance.
+
+- Validators (W3C HTML/CSS/JS validators)
+Catch syntax errors and standards compliance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+DevTools and Memory Leaks
+
+
+
+
+
+
+
+
+
+
+
+
+Memory Leak
+
+
+
+
+
+
+
+
+
+
+
+
+A memory leak occurs when a program fails
+to release memory it no longer needs.
+
+This causes unnecessary memory consumption
+that grows over time.
+
+In JavaScript, this typically happens when:
+
+- Unintended global variables persist
+- Forgotten timers/callbacks keep references alive
+- DOM elements remain referenced after removal
+- Closures retain larger scopes than necessary
+
+
+
+
+
+
+
+
+
+
+
+For example
+
+This JS code will create a memory leak
+in the browser for your users:
+
+
+let leakedElements = [];
+function createLeak() {
+    for (let i = 0; i < 1000; i++) {
+        const element = document.createElement('div');
+        document.body.appendChild(element);
+        leakedElements.push(element);
+    }
+}
+
+
+
+
+
+Can you spot a problem?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Answer: on each click you add
+more and more elements into
+'leakedElements' array.
+
+
+
+
+You might need that array for:
+
+- To remove elements later.
+- Storing elements to track their state.
+
+
+
+
+
+
+
+
+
+
+
+What will happen?
+
+If user will be clicking on this button,
+we will keep adding thousands of DOM
+objects into this array.
+It may end up with hundreds of thousands
+of these objects eventually.
+And JS will ask for more memory to store
+all those objects. The browser will ask
+your computer to allocate more memory for it.
+And eventually your computer may slow down
+due to low available memory.
+
+If memory limit is exceeded, your browser
+tab may simply crash.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+demo
+
+
+
+
+- Open file demo/memory_leak.html in browser
+- Open DevTools
+- Go to the "Memory" tab
+- Select "Heap snapshot"
+- Click "Take snapshot" (will create Snapshot 1)
+- Click the "Create Leak" button once
+- Click "Take snapshot" (will create Snapshot 2)
+- Click the "Create Leak" button two more times
+- Click "Take snapshot" (will create Snapshot 3)
+- Select Snapshot 3 → Compare to Snapshot 1
+- You will see on top <div> New 3000
+and Size Delta + 360 000 (~ 360Kb)
+
+
+This is your memory leak - your code caused browser
+to use extra 360Kb of memory, which was a mistake.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+How to fix?
+
+
+
+
+
+
+
+
+Two ways:
+
+
+1) Remove DOM elements & clear the array.
+2) Don't push anything into array.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Solution 1)
+
+
+let leakedElements = [];
+function createLeak() {
+    leakedElements.forEach(el => el.remove()); <- remove DOM elements
+    leakedElements = []; <- clear the array
+
+    for (let i = 0; i < 1000; i++) {
+        const element = document.createElement('div');
+        document.body.appendChild(element);
+        leakedElements.push(element);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Solution 2)
+
+
+function createLeak() {
+    for (let i = 0; i < 1000; i++) {
+        const element = document.createElement('div');
+        document.body.appendChild(element);
+        // do not push values to array here
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+demo in demo/memory_leak_fixed.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Web Performance
+
+
+
+
+
+
+
+
+
+
+Performance measures how fast, smooth, and efficient
+a website feels to users.
+
+It includes:
+
+- Load speed (how quickly content appears)
+- Responsiveness (how fast the page reacts to clicks/scrolling)
+- Visual stability (avoiding sudden layout shifts)
+
+
+
+
+
+
+
+
+
+
+
+Why Performance Matters?
+
+
+User Experience
+
+- 53% of users abandon sites that take >3s to load.
+https://web.dev/why-speed-matters/
+
+- Slow sites feel frustrating and unprofessional.
+
+
+SEO & Rankings
+
+- Google uses Core Web Vitals in search rankings.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lighthouse extension
+
+
+
+
+
+
+
+
+Lighthouse audits Web Performance.
+
+
+
+Metrics:
+
+- First Contentful Paint (FCP)
+When content first appears (<1.8s)
+
+- Largest Contentful Paint (LCP)
+When main content loads (<2.5s)
+
+- Total Blocking Time (TBT)
+JS blocking main thread (<200ms)
+
+- Cumulative Layout Shift (CLS)
+Visual stability (<0.1)
+
+- Time to Interactive (TTI)
+When page becomes usable (<3.8s)
+
+
+
+
+
+
+
+
+
+
+
+
+Install:
+https://chromewebstore.google.com/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?pli=1
+
+
+
+
+
+
+
+
+
+
+demo in demo/performance_lighthouse.html
+
+
+
+Problems detected by Lighthouse in this code:
+
+1) "Avoid an excessive DOM size"
+Large DOM Size (~10,000 <div>s)
+
+2) "Minimize main-thread work"
+Long-running calculation in JS
+
+and many more
+
+
+
+
+
+
+
+
+
+
+How to fix?
+
+
+
+
+1) Always add <meta> tag:
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.5">
+
+This will remove "Does not have a <meta..." error.
+
+
+2) For long-running JS scripts
+add "defer" property to <script> tag:
+
+<script defer> ... </script>
+
+
+Other ways to improve:
+
+- Delete JS code which is not needed.
+- Refactor Js code to use optimized solutions.
+- Split work into smaller chunks.
+- Use Web Workers for parallel execution.
+
+
+
+
+
+
+
+
+demo fix demo/performance_lighthouse_fixed.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Similar to Lighthouse is PageSpeed:
+
+https://pagespeed.web.dev/
+
+
+PageSpeed Insights is a free tool by Google
+that analyzes web page performance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WAVE
+
+
+
+
+
+
+
+
+WAVE = Web Accessibility Evaluation Tool
+
+
+A powerful resource designed to test your website
+is it accessible.
+
+WAVE evaluates web content for accessibility issues,
+ensuring compliance with standards like the
+Web Content Accessibility Guidelines (WCAG).
+
+It provides visual feedback and offers
+suggestions for fixes.
+
+Install
+https://chromewebstore.google.com/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh
+
+
+
+
+
+
+
+Demo/wave.html
+
+
+
+
+
+
+Demo fix: demo/wave_fix.html
+
+
+What was fixed:
+
+- Added <h1>
+- Added alt to <img>
+- Fixed contrast
+Set color #000 (black) and background #FFF (white)
+- Added <footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Validators
+
+
+
+
+
+
+
+
+
+Validators are online tools or services
+which help you catch mistakes in your code.
+
+
+
+
+
+
+
+
+
+HTML Validator
+https://validator.w3.org/
+
+Link Validator
+https://validator.w3.org/checklink
+
+CSS Validator
+https://jigsaw.w3.org/css-validator/
+
+JS validator
+ESLint
+
+
+
+
+
+
+
+
+
+Validators help:
+
+- Prevent Rendering Issues
+
+Browsers usually "guess" how to handle
+invalid code, leading to layout bugs
+and broken functionality.
+
+Example: Unclosed tags can cause
+elements to nest incorrectly.
+
+
+- Improve Accessibility
+
+Validators catch missing alt text,
+improper ARIA usage, and other
+accessibility violations.
+
+
+- Boost SEO
+
+Search engines penalize pages with
+malformed HTML (e.g., duplicate IDs,
+missing semantic tags).
+
+
+- Ensure Cross-Browser Compatibility
+
+Browsers interpret invalid code differently.
+Validation ensures consistent behavior.
+
+Example: Deprecated attributes
+(like <table border>) may not work in
+modern browsers.
+
+
+- Save Debugging Time
+
+Fixing validation errors early
+avoids hidden issues that surface later.
+
+
+
+
+
+
+
+
+
+
+
+
+HTML demo/html_validator.html
+CSS demo/broken_styles.css
+
+
+
+
+
+
+
+
+
+
+
+Browser compatibility
+
+
+https://caniuse.com/
+
+This service allows us to see if
+a functionality which we are using on the website
+is supported by all major browsers.
+
+
+
+
+
+
+Demo: "CSS Grid" or "Flexbox" or "Backdrop filter"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Notes for Lab
+
+Make screenshots of all errors and validators
+
+Windows: PrtScr
+Mac: Command + Shift + 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thank you
+
+
+
+
+
+
+
