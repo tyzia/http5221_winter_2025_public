@@ -1,0 +1,840 @@
+
+
+
+
+
+
+
+
+
+
+
+Congratulations on Completing the Course!
+
+
+
+
+
+
+
+
+
+
+
+
+Plan
+
+
+
+
+What's next
+TypeScript
+Types
+"Contacts"
+
+Fun kahoot time with prizes!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You've leveled up your JavaScript skills,
+learned about coding standards,
+testing methodologies, security, and
+automation.
+
+
+
+
+
+
+
+
+
+What's next?
+
+
+
+
+
+
+
+
+
+
+Build Real Projects
+Apply your knowledge by creating small apps
+
+- a password generator with hashing
+- a unit-tested calculator
+- an E2E-tested form
+
+Contribute to open-source projects on GitHub.
+
+Deepen Your Knowledge
+
+- Testing: Explore Jest, Mocha, or Cypress further.
+- Security: Learn about JWT, OAuth, SQL injection prevention.
+- Advanced JS: Master async/await, closures, design patterns.
+
+Join the Developer Community
+
+- Stack Overflow
+- Dev.to
+- Reddit
+
+Keep Learning
+Take advanced courses on
+Node.js, React, or cybersecurity.
+
+
+
+
+Read books
+
+"You Don’t Know JS"
+
+https://github.com/getify/You-Dont-Know-JS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Typescript
+
+
+
+
+
+
+
+
+
+
+
+
+
+What is TypeScript?
+
+TypeScript is a superset of JavaScript.
+It compiles down to JavaScript,
+so it runs anywhere JavaScript runs.
+
+
+
+
+
+
+Why TypeScript?
+
+TypeScript helps catch errors during development
+rather than runtime, making the code more robust
+and easier to maintain.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Before continue with TypeScript
+let's create a test project with
+vanilla JS
+
+
+
+
+
+
+
+
+
+
+In my test project I will create two files:
+
+-- index.html
+-- script.js
+
+
+
+
+
+
+
+
+
+
+
+This code:
+- get's element on the page with #demo
+- changes it's text
+- logs in the console a message
+- JS code is executed on button click
+
+
+
+
+
+
+demo in browser lecture_demo/index.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Now let's add TypeScript to the project
+
+
+
+
+
+
+
+
+First, let's check if I have TypeScript installed:
+
+> cd lecture_demo
+> tsc -v
+
+-bash: tsc: command not found
+That means TypeScript is not installed.
+
+
+
+
+
+
+
+
+
+
+
+
+npm
+
+
+
+
+If you want to use TS in your project, you need npm,
+Node Package Manager.
+
+
+
+
+> cd lecture_demo
+> npm init -y
+
+This will initialize npm in your folder.
+
+
+
+
+
+
+
+
+
+
+Now let's install TS as dev dependency in this project
+
+> npm i typescript --save-dev
+
+It should be a dev dependency, because it is necessary
+only in development stage.
+
+
+
+
+
+
+
+
+
+
+
+
+Now let's see if TS was installed
+
+> tsc -v
+
+-bash: tsc: command not found
+
+what?
+
+That means TypeScript is still not installed.
+Because 'tsc' command tries to use global TS installation.
+
+
+
+
+
+
+
+
+
+
+If I want to use TS in local project I need npx:
+
+> npx tsc -v
+
+
+
+
+
+
+
+
+
+
+
+
+What is npx?
+
+npx allows to run binaries locally (from node_modules).
+
+node_modules - is a folder where all dependencies of my
+project are installed.
+
+
+
+
+
+
+
+
+
+
+
+Installing is not enough, we need to create
+TS settings
+
+
+
+
+
+
+
+
+I can run this command:
+> npx tsc --init
+
+This will create tsconfig.json file:
+
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "include": ["*.ts"]
+}
+
+
+This is a configuration file for our TS where we can specify
+how and where we want files to be compiled from TS to JS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"outDir": "./dist", - where all my compiled JS files will go to.
+"include": ["*.ts"] - which files to compile.
+
+
+
+
+
+
+
+
+
+
+Now we have TS installed, let's convert JS into TS
+I will make a copy of this file for the sake of example.
+
+
+> cp script.js script_ts.ts
+
+
+
+
+Now let’s run:
+> npx tsc
+
+
+
+Ok, it doesn’t work, why?
+Our JS was working before,
+but TS failed to compile.
+
+
+
+
+paragraph is possibly null
+and I am trying to assign value
+to the property of null.
+This will crash my app.
+
+
+
+
+
+
+Let's demo the crash and modify JS like this:
+
+
+
+function changeText() {
+    const message = "Hello, you clicked the button!";
+    const paragraph = document.getElementById("demo");
+    paragraph.innerHTML = message;
+    console.log('At this moment app will crash')
+    null.innerHTML = 'andrei';
+    console.log('you never see me or anything below will work')
+    console.log("Text has been changed.");
+}
+
+
+
+
+
+Any time I will click on the button,
+this function ‘changeText()’ will run
+and I will get error and app will crash.
+
+
+Demo in the browser.
+
+
+
+
+
+
+
+
+
+Ok, thank you, TS,
+you helped me find a bug during
+development stage.
+
+It is exactly why I am using TS!
+
+
+
+
+
+
+
+
+
+
+Let’s fix the code in TS:
+
+
+
+function changeText() {
+    const message= "Hello, you clicked the button!";
+    const paragraph = document.getElementById("demo");
+    if (paragraph) {
+        paragraph.innerHTML = message;
+    }
+    console.log("Text has been changed (TS).");
+}
+
+
+
+
+
+Now let’s run compiler again:
+
+
+
+> npx tsc
+
+
+
+
+
+
+
+
+And we see the result JS file in dist/
+
+
+"use strict";
+function changeText() {
+    var message = "Hello, you clicked the button!";
+    var paragraph = document.getElementById("demo");
+    if (paragraph) {
+        paragraph.innerHTML = message;
+    }
+    console.log("Text has been changed.");
+}
+
+
+
+
+
+
+
+
+
+
+
+But wait, why the compiled JS code
+has all vars which I was teaching
+you should never use?
+
+
+
+
+
+
+
+
+
+To fix it, we need to specify which
+version of JS the code should be compiled to:
+
+
+
+
+
+Add ‘target’: ‘ES6’ to tsconfig.json
+
+
+tsconfig.json
+
+{
+    "compilerOptions": {
+    "outDir": "./dist",
+        "target": "ES6",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+},
+    "include": ["*.ts"]
+}
+
+
+
+
+
+
+
+Run npx tsc again.
+
+> npx tsc
+
+
+
+Now a better result:
+
+
+"use strict";
+function changeText() {
+    const message = "Hello, you clicked the button!";
+    const paragraph = document.getElementById("demo");
+    if (paragraph) {
+        paragraph.innerHTML = message;
+    }
+    console.log("Text has been changed.");
+}
+
+
+
+Now that we know how TS is helping
+us let’s talk about other useful features of TS:
+
+
+
+
+
+
+
+
+
+
+
+
+I can add types to my variables now:
+
+const message: string = "Hello, you clicked the button!";
+
+I can add type for the return of my function,
+in this case it doesn’t return anything,
+I will add void
+
+function changeText(): void { … }
+
+
+
+
+
+
+
+
+
+Other popular primitive types which I can use in TS:
+
+- number
+- boolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+Let's quickly discuss the idea of a contract.
+
+
+
+
+
+When we integrate the backend with the frontend,
+we usually talk about a "contract." This means
+that if I, from the UI, call a specific endpoint,
+it will return a specific type or shape of data.
+This is what we refer to as a 'contract.'
+I will trust this contract in the UI and expect
+to receive this type of data from the endpoint.
+
+The same approach applies in the other direction—
+when I intend to send something from the UI to the backend,
+we again discuss the type of data the backend is ready to consume,
+and this becomes our "contract."
+
+The word "contract" in this context means that
+it is something we (the UI and backend) have agreed upon
+and should not change or violate.
+
+
+
+
+
+
+TypeScript plays an important role in setting up
+these contracts in the UI because JavaScript doesn't have types.
+
+
+
+
+
+
+
+
+
+
+
+
+Let's focus not on endpoints, but on internal
+usage of types and concept of a contract.
+
+It will not happen between UI and backend.
+It will happen between two lines of my own code.
+
+
+
+
+
+Syntax to define a type in Typescript
+
+
+variableName : typeName
+
+For example:
+
+let age: number; // variable 'age' with type 'number'
+let city: string; // type string
+let isActive: boolean; // type boolean
+
+
+
+
+
+
+Example
+I decided that I will be working with number type
+
+I define my contract:
+
+let age: number;
+
+
+I say "this variable 'age' will accept only numbers"
+
+next I will create a method to generate age:
+
+function generateAge(): number {
+ return 18;
+}
+
+
+Last but not least, I will assign value to my
+variable based on the method:
+
+age = generateAge();
+console.log(age);
+
+
+
+Let's compile this code (> npx tsc)
+and check in browser
+
+
+
+
+Let's break things:
+
+code:
+
+let age: number; 3) change to boolean
+function generateAge(): number { 2) change to 'string'
+ return 18; 1) change to '18'
+}
+age = generateAge();
+age += 1;
+console.log(age);
+
+1) Change return from 18 to '18'
+TS will show an error.
+the same error will be: > npx tsc
+error TS2322: Type 'string' is not assignable to type 'number'.
+
+
+
+2) Change return type from number to string
+TS will show an error.
+
+
+3) Change variable type from number to boolean
+TS will show an error.
+
+
+
+
+
+
+
+
+
+If I do need to make a change
+I will update contract everywhere:
+
+code
+
+let age: string;
+function generateAge(): string {
+ return 'hello';
+}
+age = generateAge();
+age += ' world';
+console.log(age);
+
+
+
+
+
+
+
+
+
+
+
+I can have contract with function parameters:
+
+function isValid(isActive: boolean): void {
+    const isTruthy: boolean = isActive;
+}
+isValid(true);
+
+
+
+
+
+
+
+
+
+
+To recap I had a contract:
+
+-- when defined a variable type
+-- when defined function return type
+-- when was returning a value
+-- when defined function parameters
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thank you
